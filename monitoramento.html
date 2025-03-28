@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style-monitoramento.css">
+    <title>Monitoramento</title>
+</head>
+
+<body class="monitoramento">
+
+    <header>
+        <div class="header-logo"><a href="/home.html"><img src="images/logo-transparente.png" alt=""></a></div>
+        <nav>
+            <ul class="menu-list">
+                <li class="menu-item"><a href="#">Solicitações</a></li>
+                <li class="menu-item"><a href="monitoramento.html">Monitoramento</a></li>
+            </ul>
+        </nav>
+
+        <div class="user">
+            <img src="images/user-solid.svg" alt="">
+            <p>User</p>
+        </div>
+    </header>
+
+    <h1 class="main-title">Monitoramento</h1>
+    <main>
+        <section>
+            <div class="section-content">
+                <h3>Máquinas Ativas</h3>
+                <div class="machine">
+                    <p>Citizen L20</p>
+                    <div class="blocks">
+                        <div class="info-bloc">
+                            <p>00:00:00</p>
+                        </div>
+                        <div class="info-bloc">
+                            <div id="resultado">Carregando...</div>
+                        </div>
+                        <div class="status-active">
+                            <p>Ativa</p>
+                        </div>
+                    </div>
+                </div>
+                <script src="script.js"></script>
+                <div class="machine">
+                    <p>DMG Mori CMX 1100V</p>
+                    <div class="blocks">
+                        <div class="info-bloc">
+                            <p>00:00:00</p>
+                        </div>
+                        <div class="info-bloc">
+                            <p>85°c</p>
+                        </div>
+                        <div class="status-active">
+                            <p>Ativa</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        <section>
+            <div class="section-content">
+                <h3>Alertas</h3>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
