@@ -23,8 +23,4 @@ async function carregarDados() {
 }
 
 
-function minhaFuncao() {
-    console.log("Esta função está rodando...");
-    carregarDados();
-}
-const intervalo = setInterval(minhaFuncao, 1000);
+const intervalo = setInterval(carregarDados, 1000);

@@ -108,4 +108,60 @@ article{
     width: 500px;
     height: 400px;
     border-radius: 20px;
+    color: black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 20px
+}
+
+
+.machine{
+    background-color: rgb(184, 184, 184);
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px 10px 0px
+  
+}
+
+.blocks{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+.info-bloc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #cccbcb;
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 5px 0px 5px;
+}
+
+.status-active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #67B588;
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+    padding: 0px 5px 0px 5px; 
+    margin: 0px 5px 0px 5px;
+}
+
+.machine p {
+    padding: 10px;
+    font-weight: 700;
 }
