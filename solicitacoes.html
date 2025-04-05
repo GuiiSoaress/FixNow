@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles/style-solicitacoes.css">
     <title>FixNow - Solicitações</title>
 </head>
+
 <body>
     <header>
         <div class="header-logo"><a href="/index.html"><img src="images/logo-transparente.png" alt=""></a></div>
@@ -25,19 +28,70 @@
         </div>
     </header>
 
+    <h1 class="main-title">Minhas Solicitações</h1>
+
+    <div class="box-filtro">
+        <p>Filtrar por: </p>
+
+        <div class="button-filtro" id="button-emandamento">
+            <p>Em andamento</p>
+        </div>
+
+        <div class="button-filtro" id="button-concluido">
+            <p>Concluido</p>
+        </div>
+
+        <div class="button-filtro" id="button-naoconcluido">
+            <p>Não concluido</p>
+        </div>
+
+        <div class="criar-solicitacao">
+            <p>Criar Solicitação</p>
+            <img src="images/plus-solid.svg" alt="">
+        </div>
+
+
+    </div>
     <main>
         <div class="solicitacao">
-                <h3 class="solicitacao-title">Solicitacão #0001</h3>
-                <p>Tipo: industrial</p>
-                <p>Data: 22/03/2025</p>
-                <p>Profissional Responsalvel:João Colleto</p>
-                <div class="button-emandamento">
-                    <h3>Em andamento</h3>
-                </div>
+            <h3 class="solicitacao-title">Solicitacão #0001</h3>
+            <p>Tipo: industrial</p>
+            <p>Data: 22/03/2025</p>
+            <p>Profissional Responsalvel: João Colleto</p>
+            <div class="button-status" id="button-status_emandamento">
+                <h3>Em andamento</h3>
+            </div>
 
-                <a class="button-vermais">Ver mais</a>
+            <a href="#" class="button-vermais">Ver mais</a>
         </div>
+
+        <div class="solicitacao">
+            <h3 class="solicitacao-title">Solicitacão #0001</h3>
+            <p>Tipo: industrial</p>
+            <p>Data: 22/03/2025</p>
+            <p>Profissional Responsalvel: João Colleto</p>
+            <div class="button-status" id="button-status_concluido">
+                <h3>Concluido</h3>
+            </div>
+
+            <a href="#" class="button-vermais">Ver mais</a>
+        </div>
+
+        <div class="solicitacao">
+            <h3 class="solicitacao-title">Solicitacão #0001</h3>
+            <p>Tipo: industrial</p>
+            <p>Data: 22/03/2025</p>
+            <p>Profissional Responsalvel: João Colleto </p>
+            <div class="button-status" id="button-status_naoconcluido">
+                <h3>Não concluido</h3>
+            </div>
+
+            <a href="#" class="button-vermais">Ver mais</a>
+        </div>
+
+
     </main>
-    
+
 </body>
+
 </html>

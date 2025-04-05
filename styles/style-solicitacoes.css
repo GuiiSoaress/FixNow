@@ -4,7 +4,8 @@ body{
     margin: 0;
     font-family: "Raleway", sans-serif;
    }
-   
+
+/* Header */
    header{
        display: flex;
    
@@ -66,13 +67,23 @@ body{
    
 
 
+/* Main com todos os conteudos */
 main{
     display: flex;
     width: 100%;
     height: auto;
-    padding: 50px;
+    padding: 20px 50px 0px 50px;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+.main-title{
+    margin-left: 50px;
 }
 
+
+
+ /* Blocos das solicitacoes */
 .solicitacao-title{
     text-align: center;
 }
@@ -84,14 +95,41 @@ main{
 
     background-color: #d9d9d9;
     padding: 10px;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 280px;
     border-radius: 20px;
 }
 .solicitacao p{
     margin: 10px 0px 10px 0px;
 }
 
+
+
+
+
+
+ /* Botoes de status das solicitacoes */
+ .button-status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    width: 100%;
+    height: 30px;
+ }
+
+ #button-status_emandamento{
+    background-color: #D7B600;
+ }
+
+ #button-status_concluido{
+    background-color: #67B588;
+ }
+
+ #button-status_naoconcluido{
+    background-color: #E72313;
+ }
+ 
 .button-emandamento{
     display: flex;
     align-items: center;
@@ -100,17 +138,15 @@ main{
     border-radius: 30px;
     width: 100%;
     height: 50px;
-
-
 }
 
-.button-emandamento h3{
-    margin: 0;
-}
 
+
+
+/* botao ver mais das solicitacoes */
 .button-vermais{
     width: 100%;
-    height: 50px;
+    height: 30px;
     background-color: #848484;
     border-radius: 30px;
     align-items: center;
@@ -120,4 +156,77 @@ main{
     display: flex;
     justify-content: center;
     margin: 5px 0px 5px 0px;
+
+    color: black;
+    text-decoration: none;
+}
+
+
+
+
+/* Botoes do filtro */
+.box-filtro{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    gap: 20px;
+    padding: 0px 50px 0px 50px;
+    font-size: 20px;
+}
+
+.button-filtro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    width: auto ;
+    height: 30px;
+    
+}
+
+#button-concluido{
+    background-color: #67B588;
+    font-size: 12px;
+    padding: 0px 10px 0px 10px;
+    font-weight: 500;
+}
+
+#button-emandamento{
+    background-color: #D7B600;
+    font-size: 12px;
+    padding: 0px 10px 0px 10px;
+    font-weight: 500;
+}
+
+#button-naoconcluido{
+    background-color: #E72313;
+    font-size: 12px;
+    padding: 0px 10px 0px 10px;
+    font-weight: 500;
+}
+
+
+
+
+
+/* Botao criar solicitação */
+.criar-solicitacao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #b4b3b3;
+    border-radius: 30px;
+    width: auto ;
+    height: 40px;
+    padding: 0px 20px 0px 20px;
+    gap: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    
+
+}
+.criar-solicitacao img{
+    width: 30px;
 }
