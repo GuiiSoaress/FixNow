@@ -5,6 +5,8 @@ body{
  font-family: "Raleway", sans-serif;
 }
 
+
+/* header */
 header{
     display: flex;
 
@@ -67,7 +69,7 @@ nav{
 
 
 
-
+/* main com conteudo */
 main{
     display: flex;
     justify-content: space-between;
@@ -77,6 +79,7 @@ main{
     margin-left: 30px;
 }
 
+/* blocos section com as maquinas */
 section{
     width: 50%;
     height: 500px;
@@ -90,6 +93,7 @@ section{
     margin: 10px 20px 10px 20px;
 }
 
+/* bloco das maquinas */
 .machine{
     background-color: white;
     width: 100%;
@@ -130,6 +134,20 @@ section{
     border-radius: 15px;
     padding: 0px 5px 0px 5px; 
     margin: 0px 5px 0px 5px;
+    display: none;
+}
+
+.status-inactive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fa1717;
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+    padding: 0px 5px 0px 5px; 
+    margin: 0px 5px 0px 5px;
+
 }
 
 .machine p {
@@ -140,4 +158,52 @@ section{
 #resultado{
     font-family: "Raleway", sans-serif;
     font-weight: 500;
+}
+
+
+/* section alertas */
+.section-content_alertas{
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display:flex ;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-content_alertas h3{
+    margin: 0;
+}
+
+
+/* Div de Alertas */
+.bloco-alerta{
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+
+}
+
+.bloco-alerta p{
+    margin: 0;
+}
+
+.bloco-alerta_solicitacao{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 20px;
+}
+
+/* botoes da solicitacao  */
+.button-alerta{
+    background-color: #D9D9D9;
+    border-radius: 30px;
+    padding: 5px 10px 5px 10px;
+}   
+
+#button-alerta_emandamento{
+    background-color: #D7B600; 
+    margin-left: auto;
 }

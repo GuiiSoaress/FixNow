@@ -15,7 +15,13 @@ async function carregarDados() {
         console.log("Dados recebidos:", data);
 
         // Exibir o valor na tela
-        document.getElementById("resultado").innerText = data;
+        document.getElementById("resultado").innerText = data.temperatura;
+        document.getElementById("nome-maquina").innerText = data.nome;
+        document.getElementById("identificador").innerText = data.id;
+        document.getElementById("tempo").innerText = data.tempo_funcionamento;
+        if(data.status != 0){
+            mostra_oculta();
+        }
     } catch (error) {
         console.error("Erro:", error);
         document.getElementById("resultado").innerText = "Erro";
@@ -24,3 +30,14 @@ async function carregarDados() {
 
 
 const intervalo = setInterval(carregarDados, 1000);
+
+function mostra_oculta(){
+
+    var ativa = document.getElementById("status-active");
+    var inativa = document.getElementById("status-inactive");
+
+    ativa.style.display === "block";
+    inativa.style.display = "none";
+
+
+}

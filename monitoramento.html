@@ -35,16 +35,20 @@
             <div class="section-content">
                 <h3>Máquinas Ativas</h3>
                 <div class="machine">
-                    <p>Citizen L20</p>
+                    <div id="identificador"></div>
+                    <div class="nome-maquina" id="nome-maquina">carregando</div>
                     <div class="blocks">
                         <div class="info-bloc">
-                            <p>00:00:00</p>
+                            <div id="tempo">----</div>
                         </div>
                         <div class="info-bloc">
                             <div id="resultado">Carregando...</div>
                         </div>
                         <div class="status-active">
                             <p>Ativa</p>
+                        </div>
+                        <div class="status-inactive" id="status-inactive">
+                            <p>Desligada</p>
                         </div>
                     </div>
                 </div>
@@ -58,17 +62,31 @@
                         <div class="info-bloc">
                             <p>85°c</p>
                         </div>
-                        <div class="status-active">
+                        <div class="status-active" id="status-active">
                             <p>Ativa</p>
                         </div>
+
                     </div>
                 </div>
                 
             </div>
         </section>
         <section>
-            <div class="section-content">
+            <div class="section-content_alertas">
                 <h3>Alertas</h3>
+                <div class="bloco-alerta">
+                    <p>Sistema: Foi gerada um solicitação de revisao para Fanuc robodrill</p>
+                    <div class="bloco-alerta_solicitacao">
+                        <p>Solicitação: #0023</p>
+                        <div class="button-alerta" id="button-alerta_emandamento">
+                            <p>Em andamento</p>
+                        </div>
+                        <div class="button-alerta">
+                            <p>Ver solicitação</p>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </section>
     </main>
