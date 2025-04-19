@@ -1,0 +1,26 @@
+[
+    {
+        "id": "13e95b1ed03abcb5",
+        "type": "mysql",
+        "z": "e9d0d84d595f60f7",
+        "mydb": "8ad1c9dd12778dde",
+        "name": "Banco De Dados",
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [
+                "e381256b737fddb4"
+            ]
+        ]
+    },
+    {
+        "id": "8ad1c9dd12778dde",
+        "type": "MySQLdatabase",
+        "name": "BancoSolicitacoes",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "fixNow",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
