@@ -11,10 +11,16 @@ $(document).ready(function() {
     const detalhesDescricao = $('#detalhesDescricao');
     let contadorSolicitacoes = listaDeSolicitacoes.find('.solicitacao').length + 1;
 
+    criarSolicitacaoBotao.on('click', function() {
+        popupSolicitacao.css('display', 'flex');
+    });
+    
+    buscarSolicitacoes();
+
     // Função para buscar as solicitações da API (simulada por enquanto)
-    function buscarSolicitacoes() {
+   async function buscarSolicitacoes() {
         $.ajax({
-            url: '/api/solicitacoes', // Seu futuro endpoint no Node-RED para buscar as solicitações (GET)
+            url: 'http://127.0.0.1:1880/buscarsolicitacao', // Seu futuro endpoint no Node-RED para buscar as solicitações (GET)
             method: 'GET',
             dataType: 'json', // Esperamos receber dados JSON
             success: function(data) {
@@ -45,6 +51,7 @@ $(document).ready(function() {
                     );
                     listaDeSolicitacoes.append(novoCard);
                     contadorSolicitacoes++;
+                    
                 });
             },
             error: function(error) {
@@ -52,14 +59,11 @@ $(document).ready(function() {
                 // Aqui você pode adicionar alguma lógica para informar o usuário sobre o erro
             }
         });
-    }
-
+    } 
     // Chamar a função para buscar as solicitações quando a página carrega
-    buscarSolicitacoes();
+    
 
-    criarSolicitacaoBotao.on('click', function() {
-        popupSolicitacao.css('display', 'flex');
-    });
+ 
 
     window.fecharPopup = function() {
         popupSolicitacao.css('display', 'none');
@@ -90,6 +94,7 @@ $(document).ready(function() {
         const data = $('#dataSolicitacao').val();
         const descricao = $('#descricaoSolicitacao').val();
 
+
         const novaSolicitacao = {
             nome: nomeSolicitacao,
             tipo: tipo,
@@ -105,6 +110,7 @@ $(document).ready(function() {
         // Simulação de envio para a API (você descomentará o $.ajax real depois)
         console.log('Dados da nova solicitação (simulando envio):', novaSolicitacao);
         // Após a simulação bem-sucedida (quando a API estiver pronta, isso será no 'success' do $.ajax):
+
 
          /*
         const novoCard = $('<div>', { class: 'solicitacao' }).append(
@@ -133,21 +139,25 @@ $(document).ready(function() {
 
        
         // Chamada real para a API (descomentar quando o Node-RED estiver pronto)
+    
         $.ajax({
-            url: 'http://127.0.0.1:1880/solicitacao',
+            url: 'http://127.0.0.1:1880/salvarsolicitacao',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(novaSolicitacao),
             success: function(response) {
                 console.log('Solicitação salva com sucesso:', response);
-                // Após o sucesso, você pode chamar buscarSolicitacoes() para recarregar a lista
+                fecharPopup();
+                //Após o sucesso, você pode chamar buscarSolicitacoes() para recarregar a lista
             },
             error: function(error) {
                 console.error('Erro ao salvar a solicitação:', error);
             }
         });
-    
+
     });
+
+   
 
     listaDeSolicitacoes.on('click', '.button-vermais', function() {
         const nome = $(this).data('nome');
@@ -172,4 +182,5 @@ function verificarTipo() {
       campoIdMaquina.style.display = "none";
       document.getElementById("idMaquina").removeAttribute("required");
     }
-  }
+}
+    

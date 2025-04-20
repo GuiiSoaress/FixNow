@@ -1,0 +1,412 @@
+[
+    {
+        "id": "c7ac44f868b6d0a5",
+        "type": "tab",
+        "label": "FixNow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7de83f24fe07e557",
+        "type": "group",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Salvar Solicitação",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "56b8a54e3a89ae3f",
+            "fdddec48fa373a64",
+            "59f72c4e8c5af560",
+            "1b9215387fb95734"
+        ],
+        "x": 94,
+        "y": 639,
+        "w": 892,
+        "h": 82
+    },
+    {
+        "id": "e28058d2b18e8fb5",
+        "type": "serial in",
+        "z": "c7ac44f868b6d0a5",
+        "name": "UNO",
+        "serial": "8cf36e59907d8385",
+        "x": 210,
+        "y": 60,
+        "wires": [
+            [
+                "d74260ba4e715d60"
+            ]
+        ]
+    },
+    {
+        "id": "369b59b49bb885b1",
+        "type": "debug",
+        "z": "c7ac44f868b6d0a5",
+        "d": true,
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d74260ba4e715d60",
+        "type": "json",
+        "z": "c7ac44f868b6d0a5",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 370,
+        "y": 60,
+        "wires": [
+            [
+                "123103ab97afc255"
+            ]
+        ]
+    },
+    {
+        "id": "123103ab97afc255",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Temperatura",
+        "func": "global.set(\"temperatura\", msg.payload.temp);\nmsg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 60,
+        "wires": [
+            [
+                "369b59b49bb885b1"
+            ]
+        ]
+    },
+    {
+        "id": "1f679b1fe3928e67",
+        "type": "http in",
+        "z": "c7ac44f868b6d0a5",
+        "name": "",
+        "url": "/temperatura",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 220,
+        "wires": [
+            [
+                "b586f92d0f203534"
+            ]
+        ]
+    },
+    {
+        "id": "db061c2f5ccb0170",
+        "type": "http response",
+        "z": "c7ac44f868b6d0a5",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "b586f92d0f203534",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "name": "TEMPERATURA",
+        "func": "msg.payload = global.get(\"temperatura\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "db061c2f5ccb0170"
+            ]
+        ]
+    },
+    {
+        "id": "2ad80e63423a7033",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "name": "VAR TEMPERATURA",
+        "func": "global.set(\"temperatura\", 0);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68d09bd30d865a03",
+        "type": "inject",
+        "z": "c7ac44f868b6d0a5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 120,
+        "wires": [
+            [
+                "2ad80e63423a7033"
+            ]
+        ]
+    },
+    {
+        "id": "56b8a54e3a89ae3f",
+        "type": "http in",
+        "z": "c7ac44f868b6d0a5",
+        "g": "7de83f24fe07e557",
+        "name": "",
+        "url": "/salvarsolicitacao",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 680,
+        "wires": [
+            [
+                "59f72c4e8c5af560"
+            ]
+        ]
+    },
+    {
+        "id": "fdddec48fa373a64",
+        "type": "mysql",
+        "z": "c7ac44f868b6d0a5",
+        "g": "7de83f24fe07e557",
+        "mydb": "7ad621cbb6ee4ae0",
+        "name": "FIXNOW",
+        "x": 740,
+        "y": 680,
+        "wires": [
+            [
+                "1b9215387fb95734"
+            ]
+        ]
+    },
+    {
+        "id": "59f72c4e8c5af560",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "7de83f24fe07e557",
+        "name": "SalvarSolicitacao",
+        "func": "let nome = msg.payload.nome;\nlet tipo = msg.payload.tipo;\nlet urgencia = msg.payload.urgencia;\nlet idMaquina = msg.payload.idMaquina;\nlet departamento = msg.payload.departamento;\nlet data = msg.payload.data;\nlet descricao = msg.payload.descricao;\nlet status = msg.payload.status; // Status padrão ao criar\n\n\nmsg.topic = \n    \"INSERT INTO solicitacao (nomesolicitante, tipo, urgencia, idmaquina, departamento, dataSolicitacao, descricao, statussolicitacao) VALUES (? ,?, ?, ? , ?, ?, ?, ? )\";\nmsg.payload = [nome, tipo, urgencia, idMaquina, departamento, data, descricao, status];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 680,
+        "wires": [
+            [
+                "fdddec48fa373a64"
+            ]
+        ]
+    },
+    {
+        "id": "35b49cedea64bda9",
+        "type": "debug",
+        "z": "c7ac44f868b6d0a5",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "1b9215387fb95734",
+        "type": "http response",
+        "z": "c7ac44f868b6d0a5",
+        "g": "7de83f24fe07e557",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 910,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "e73fc4c084409107",
+        "type": "http in",
+        "z": "c7ac44f868b6d0a5",
+        "name": "",
+        "url": "/buscarsolicitacao",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 400,
+        "wires": [
+            [
+                "2019ad2eacd1aa48"
+            ]
+        ]
+    },
+    {
+        "id": "fcf02662264960c9",
+        "type": "mysql",
+        "z": "c7ac44f868b6d0a5",
+        "mydb": "7ad621cbb6ee4ae0",
+        "name": "FIXNOW",
+        "x": 700,
+        "y": 400,
+        "wires": [
+            [
+                "35b49cedea64bda9",
+                "7d0ab37ccca610b1"
+            ]
+        ]
+    },
+    {
+        "id": "05fea7ce193f5045",
+        "type": "inject",
+        "z": "c7ac44f868b6d0a5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 480,
+        "wires": [
+            [
+                "2019ad2eacd1aa48"
+            ]
+        ]
+    },
+    {
+        "id": "493adddb8d47ade8",
+        "type": "http response",
+        "z": "c7ac44f868b6d0a5",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1110,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7d0ab37ccca610b1",
+        "type": "json",
+        "z": "c7ac44f868b6d0a5",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 910,
+        "y": 340,
+        "wires": [
+            [
+                "493adddb8d47ade8"
+            ]
+        ]
+    },
+    {
+        "id": "2019ad2eacd1aa48",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "name": "BuscarSolicitação",
+        "func": "msg.topic = \"SELECT * FROM solicitacao\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "fcf02662264960c9"
+            ]
+        ]
+    },
+    {
+        "id": "8cf36e59907d8385",
+        "type": "serial-port",
+        "name": "UNO",
+        "serialport": "COM8",
+        "serialbaud": "9600",
+        "databits": 8,
+        "parity": "none",
+        "stopbits": 1,
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": 10000
+    },
+    {
+        "id": "7ad621cbb6ee4ae0",
+        "type": "MySQLdatabase",
+        "name": "FIXNOW",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "fixnow",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
