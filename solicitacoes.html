@@ -59,6 +59,10 @@
         <img src="images/plus-solid.svg" alt="" />
       </div>
     </div>
+
+
+
+
     <main>
       <div class="solicitacao">
         <h3 class="solicitacao-title">Solicitacão #0001</h3>
@@ -96,21 +100,51 @@
         <a href="#" class="button-vermais">Ver mais</a>
       </div>
 
+
       <div id="popupSolicitacao" class="popup-overlay">
         <div class="popup-content">
           <h2>Nova Solicitação</h2>
           <form id="formNovaSolicitacao">
-            <label for="nomeSolicitacao">Nome:</label>
-            <input type="text" id="nomeSolicitacao" required /><br />
+            <label for="nomeSolicitacao">Nome do solicitante:</label>
+            <input type="text" id="nomeSolicitacao" required  /><br />
 
-            <label for="tipoSolicitacao">Tipo:</label>
-            <input type="text" id="tipoSolicitacao" required /><br />
+            <label for="tipoSolicitacao">Tipo de equipamento: </label>
+            <select id="tipoSolicitacao" required onchange="verificarTipo()">
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value="Informatica">Informática</option>
+              <option value="Industrial">Industrial</option>
+              <option value="Infraestrutura">Infraestrutura</option>
+              <option value="Mobiliario">Mobiliário</option>
+            </select>
+
+            <br>
+            <br>
+
+            <label for="urgenciaSolicitacao">Urgencia: </label>
+            <select id="urgenciaSolicitacao" required>
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value="Baixa">Baixa</option>
+              <option value="Media">Media</option>
+              <option value="Alta">Alta</option>
+            </select>
+            
+            <br>
+            <br>
+
+            <div id="campoIdMaquina" style="display: none;">
+              <label for="idMaquinaSolicitacao">ID da máquina:</label>
+              <input type="text" id="idMaquinaSolicitacao" />
+              <br>
+            </div>
+
+            <label for="departamentoSolicitacao">Departamento:</label>
+            <input type="text" id="departamentoSolicitacao" required /><br />
 
             <label for="dataSolicitacao">Data:</label>
             <input type="date" id="dataSolicitacao" required /><br />
 
-            <label for="responsavelSolicitacao">Responsável:</label>
-            <input type="text" id="responsavelSolicitacao" required /><br />
+            <!-- <label for="responsavelSolicitacao">Responsável:</label>
+            <input type="text" id="responsavelSolicitacao" required /><br /> -->
 
             <label for="descricaoSolicitacao">Descrição:</label>
             <textarea id="descricaoSolicitacao" rows="4" cols="30" required></textarea><br>

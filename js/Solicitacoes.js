@@ -84,15 +84,19 @@ $(document).ready(function() {
 
         const nomeSolicitacao = $('#nomeSolicitacao').val();
         const tipo = $('#tipoSolicitacao').val();
+        const urgencia = $('#urgenciaSolicitacao').val();
+        const idMaquina  = $('#idMaquinaSolicitacao').val();
+        const departamento = $('#departamentoSolicitacao').val();
         const data = $('#dataSolicitacao').val();
-        const responsavel = $('#responsavelSolicitacao').val();
         const descricao = $('#descricaoSolicitacao').val();
 
         const novaSolicitacao = {
             nome: nomeSolicitacao,
             tipo: tipo,
-            data_criacao: data,
-            responsavel: responsavel,
+            urgencia : urgencia,
+            idMaquina: idMaquina,
+            departamento: departamento,
+            data: data,
             descricao: descricao,
             status: 'emandamento', // Status padrão ao criar
             status_texto: 'Em andamento'
@@ -101,6 +105,8 @@ $(document).ready(function() {
         // Simulação de envio para a API (você descomentará o $.ajax real depois)
         console.log('Dados da nova solicitação (simulando envio):', novaSolicitacao);
         // Após a simulação bem-sucedida (quando a API estiver pronta, isso será no 'success' do $.ajax):
+
+         /*
         const novoCard = $('<div>', { class: 'solicitacao' }).append(
             $('<h3>', { class: 'solicitacao-title' }).text(`Solicitação #${String(contadorSolicitacoes).padStart(4, '0')}`),
             $('<p>').text(`Tipo: ${tipo}`),
@@ -123,11 +129,12 @@ $(document).ready(function() {
         listaDeSolicitacoes.append(novoCard);
         contadorSolicitacoes++;
         fecharPopup();
+        */
 
-        /*
+       
         // Chamada real para a API (descomentar quando o Node-RED estiver pronto)
         $.ajax({
-            url: '/api/solicitacoes',
+            url: 'http://127.0.0.1:1880/solicitacao',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(novaSolicitacao),
@@ -139,7 +146,7 @@ $(document).ready(function() {
                 console.error('Erro ao salvar a solicitação:', error);
             }
         });
-        */
+    
     });
 
     listaDeSolicitacoes.on('click', '.button-vermais', function() {
@@ -151,3 +158,18 @@ $(document).ready(function() {
         abrirPopupDetalhes(nome, tipo, data, responsavel, descricao);
     });
 });
+
+
+
+function verificarTipo() {
+    const tipo = document.getElementById("tipoSolicitacao").value;
+    const campoIdMaquina = document.getElementById("campoIdMaquina");
+
+    if (tipo === "Industrial") {
+      campoIdMaquina.style.display = "block";
+      document.getElementById("idMaquina").setAttribute("required", "required");
+    } else {
+      campoIdMaquina.style.display = "none";
+      document.getElementById("idMaquina").removeAttribute("required");
+    }
+  }
