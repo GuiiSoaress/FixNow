@@ -1,0 +1,59 @@
+{
+    "info": {
+        "_postman_id": "842a64f0-f548-488c-83cd-8255599de5aa",
+        "name": "Collections FixNow",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "http://127.0.0.1:1880/salvarsolicitacao",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:1880/salvarsolicitacao",
+                    "path": [
+                        "salvarsolicitacao"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "1880"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"nomesolicitante\": \"Nome do Solicitante\",\r\n  \"tipo\": \"Reparo Urgente\",\r\n  \"urgencia\": \"Alta\",\r\n  \"idmaquina\": \"M4\",\r\n  \"departamento\": \"Produção\",\r\n  \"dataSolicitacao\": \"2025-04-21\",\r\n  \"descricao\": \"Máquina injetora parou...\",\r\n  \"statussolicitacao\": \"Em Aberto\"\r\n}"
+                }
+            }
+        },
+        {
+            "name": "http://127.0.0.1:1880/buscarsolicitaca",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:1880/buscarsolicitacao",
+                    "path": [
+                        "buscarsolicitacao"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "1880"
+                }
+            }
+        }
+    ]
+}
