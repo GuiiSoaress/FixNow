@@ -96,7 +96,7 @@ main{
     background-color: #d9d9d9;
     padding: 10px;
     width: 250px;
-    height: 280px;
+    height: auto;
     border-radius: 20px;
 }
 .solicitacao p{

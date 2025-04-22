@@ -14,9 +14,10 @@ $(document).ready(function () {
         console.log("A FUNÇÃO DE CLIQUE DO CRIAR SOLICITAÇÃO FOI EXECUTADA!");
         const popupSolicitacao = $("#popupSolicitacao");
         console.log("Elemento popupSolicitacao (dentro do clique):", popupSolicitacao);
+        popupSolicitacao.css("display", "flex");
         if (popupSolicitacao.length > 0) {
-          console.log("Elemento popupSolicitacao ENCONTRADO!");
-          popupSolicitacao.css("display", "flex");
+          console.log("Elemento popupSolicitacao ATIVO!");
+          
         } else {
           console.log("Elemento popupSolicitacao NÃO ENCONTRADO!");
         }
@@ -36,9 +37,10 @@ $(document).ready(function () {
           $.each(data, function (index, solicitacao) {
             const novoCard = $("<div>", { class: "solicitacao" }).append(
               $("<h3>", { class: "solicitacao-title" }).text(`Solicitação #${String(contadorSolicitacoes).padStart(4, "0")}`),
+              $("<p>").text(`Solicitante: ${solicitacao.nome}`),
               $("<p>").text(`Tipo: ${solicitacao.tipo}`),
-              $("<p>").text(`Data: ${solicitacao.dataSolicitacao}`),
-              $("<p>").text(`Profissional Responsalvel: ${solicitacao.nomesolicitante}`),
+              $("<p>").text(`Departamento: ${solicitacao.departamento}`),
+              $("<p>").text(`Data: ${solicitacao.data}`),
               $("<div>", { class: "button-status", id: `button-status_${solicitacao.statussolicitacao}` }).append($("<h3>").text(solicitacao.statussolicitacao)),
               $("<a>", {
                 href: "#",
@@ -83,10 +85,12 @@ $(document).ready(function () {
       const nomeSolicitacao = $("#nomeSolicitacao").val();
       const tipo = $("#tipoSolicitacao").val();
       const urgencia = $("#urgenciaSolicitacao").val();
-      const idMaquina = $("#idMaquinaSolicitacao").val();
+      let idMaquina = $("#idMaquinaSolicitacao").val();
+      idMaquina = idMaquina ? parseInt(idMaquina) : null;
       const departamento = $("#departamentoSolicitacao").val();
       const data = $("#dataSolicitacao").val();
       const descricao = $("#descricaoSolicitacao").val();
+
       const novaSolicitacao = {
         nome: nomeSolicitacao,
         tipo: tipo,
@@ -95,12 +99,13 @@ $(document).ready(function () {
         departamento: departamento,
         data: data,
         descricao: descricao,
-        status: "emandamento",
-        status_texto: "Em andamento",
+        status: "Em avaliacao",
       };
   
       console.log("Dados da nova solicitação (simulando envio):", novaSolicitacao);
   
+      
+      /*
       const novoCard = $("<div>", { class: "solicitacao" }).append(
         $("<h3>", { class: "solicitacao-title" }).text(`Solicitação #${String(contadorSolicitacoes).padStart(4, "0")}`),
         $("<p>").text(`Tipo: ${tipo}`),
@@ -121,6 +126,8 @@ $(document).ready(function () {
       listaDeSolicitacoes.append(novoCard);
       contadorSolicitacoes++;
       $("#popupSolicitacao").css("display", "none");
+
+      */
   
       $.ajax({
         url: "http://127.0.0.1:1880/salvarsolicitacao",
@@ -129,8 +136,10 @@ $(document).ready(function () {
         data: JSON.stringify(novaSolicitacao),
         success: function (response) {
           console.log("Solicitação salva com sucesso:", response);
+          buscarSolicitacoes();
           $("#popupSolicitacao").css("display", "none");
           // Após o sucesso, você pode chamar buscarSolicitacoes() para recarregar a lista
+
         },
         error: function (error) {
           console.error("Erro ao salvar a solicitação:", error);
