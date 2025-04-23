@@ -104,31 +104,6 @@ $(document).ready(function () {
   
       console.log("Dados da nova solicitação (simulando envio):", novaSolicitacao);
   
-      
-      /*
-      const novoCard = $("<div>", { class: "solicitacao" }).append(
-        $("<h3>", { class: "solicitacao-title" }).text(`Solicitação #${String(contadorSolicitacoes).padStart(4, "0")}`),
-        $("<p>").text(`Tipo: ${tipo}`),
-        $("<p>").text(`Data: ${data}`),
-        $("<p>").text(`Profissional Responsalvel: ${nomeSolicitacao}`), // Usando nomeSolicitacao aqui
-        $("<div>", { class: "button-status", id: "button-status_emandamento" }).append($("<h3>").text("Em andamento")),
-        $("<a>", {
-          href: "#",
-          class: "button-vermais",
-          "data-nome": nomeSolicitacao,
-          "data-tipo": tipo,
-          "data-data": data,
-          "data-responsavel": nomeSolicitacao,
-          "data-descricao": descricao,
-        }).text("Ver mais")
-      );
-  
-      listaDeSolicitacoes.append(novoCard);
-      contadorSolicitacoes++;
-      $("#popupSolicitacao").css("display", "none");
-
-      */
-  
       $.ajax({
         url: "http://127.0.0.1:1880/salvarsolicitacao",
         method: "POST",
@@ -138,11 +113,28 @@ $(document).ready(function () {
           console.log("Solicitação salva com sucesso:", response);
           buscarSolicitacoes();
           $("#popupSolicitacao").css("display", "none");
-          // Após o sucesso, você pode chamar buscarSolicitacoes() para recarregar a lista
+          // Exibe o SweetAlert2 de sucesso
+          Swal.fire({
+            title: "Sucesso!",
+            text: "Sua solicitação foi criada com sucesso.",
+            icon: "success",
+            confirmButtonText: "OK"
+        }).then((result) => {
+      
+            if (result.isConfirmed) {
+                buscarSolicitacoes(); 
+            }
+        });
 
         },
         error: function (error) {
           console.error("Erro ao salvar a solicitação:", error);
+          Swal.fire({
+            title: "Erro!",
+            text: "Houve um erro ao salvar a solicitação.",
+            icon: "error",
+            confirmButtonText: "OK"
+        });
         },
       });
     });

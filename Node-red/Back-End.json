@@ -21,9 +21,29 @@
             "59f72c4e8c5af560",
             "1b9215387fb95734"
         ],
-        "x": 94,
-        "y": 639,
-        "w": 892,
+        "x": 74,
+        "y": 559,
+        "w": 972,
+        "h": 82
+    },
+    {
+        "id": "3b02f041768a5ab2",
+        "type": "group",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Buscar Solicitações",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "e73fc4c084409107",
+            "fcf02662264960c9",
+            "493adddb8d47ade8",
+            "2019ad2eacd1aa48",
+            "76f44f2ce02e35d6"
+        ],
+        "x": 34,
+        "y": 339,
+        "w": 1152,
         "h": 82
     },
     {
@@ -199,8 +219,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 220,
-        "y": 680,
+        "x": 200,
+        "y": 600,
         "wires": [
             [
                 "59f72c4e8c5af560"
@@ -214,8 +234,8 @@
         "g": "7de83f24fe07e557",
         "mydb": "7ad621cbb6ee4ae0",
         "name": "FIXNOW",
-        "x": 740,
-        "y": 680,
+        "x": 760,
+        "y": 600,
         "wires": [
             [
                 "1b9215387fb95734"
@@ -228,36 +248,20 @@
         "z": "c7ac44f868b6d0a5",
         "g": "7de83f24fe07e557",
         "name": "SalvarSolicitacao",
-        "func": "let nome = msg.payload.nome;\nlet tipo = msg.payload.tipo;\nlet urgencia = msg.payload.urgencia;\nlet idMaquina = msg.payload.idMaquina;\nlet departamento = msg.payload.departamento;\nlet data = msg.payload.data;\nlet descricao = msg.payload.descricao;\nlet status = msg.payload.status; // Status padrão ao criar\n\n\nmsg.topic = \n    \"INSERT INTO solicitacao (nomesolicitante, tipo, urgencia, idmaquina, departamento, dataSolicitacao, descricao, statussolicitacao) VALUES (? ,?, ?, ? , ?, ?, ?, ? )\";\nmsg.payload = [nome, tipo, urgencia, idMaquina, departamento, data, descricao, status];\nreturn msg;",
+        "func": "let nome = msg.payload.nome;\nlet tipo = msg.payload.tipo;\nlet urgencia = msg.payload.urgencia;\nlet idMaquina = msg.payload.idMaquina;\nlet departamento = msg.payload.departamento;\nlet data = msg.payload.data;\nlet descricao = msg.payload.descricao;\nlet status = msg.payload.status; // Status padrão ao criar\n\n\nmsg.topic = \n    \"INSERT INTO solicitacao (nome, tipo, urgencia, id_maquina, departamento, data, descricao, status_solicitacao) VALUES (? ,?, ?, ? , ?, ?, ?, ? )\";\nmsg.payload = [nome, tipo, urgencia, idMaquina, departamento, data, descricao, status];\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 680,
+        "x": 450,
+        "y": 600,
         "wires": [
             [
                 "fdddec48fa373a64"
             ]
         ]
-    },
-    {
-        "id": "35b49cedea64bda9",
-        "type": "debug",
-        "z": "c7ac44f868b6d0a5",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 920,
-        "y": 480,
-        "wires": []
     },
     {
         "id": "1b9215387fb95734",
@@ -267,21 +271,22 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 910,
-        "y": 680,
+        "x": 970,
+        "y": 600,
         "wires": []
     },
     {
         "id": "e73fc4c084409107",
         "type": "http in",
         "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
         "name": "",
         "url": "/buscarsolicitacao",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 200,
-        "y": 400,
+        "x": 160,
+        "y": 380,
         "wires": [
             [
                 "2019ad2eacd1aa48"
@@ -292,43 +297,14 @@
         "id": "fcf02662264960c9",
         "type": "mysql",
         "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
         "mydb": "7ad621cbb6ee4ae0",
         "name": "FIXNOW",
-        "x": 700,
-        "y": 400,
+        "x": 600,
+        "y": 380,
         "wires": [
             [
-                "35b49cedea64bda9",
-                "7d0ab37ccca610b1"
-            ]
-        ]
-    },
-    {
-        "id": "05fea7ce193f5045",
-        "type": "inject",
-        "z": "c7ac44f868b6d0a5",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 220,
-        "y": 480,
-        "wires": [
-            [
-                "2019ad2eacd1aa48"
+                "76f44f2ce02e35d6"
             ]
         ]
     },
@@ -336,33 +312,19 @@
         "id": "493adddb8d47ade8",
         "type": "http response",
         "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
         "name": "",
         "statusCode": "",
         "headers": {},
         "x": 1110,
-        "y": 340,
+        "y": 380,
         "wires": []
-    },
-    {
-        "id": "7d0ab37ccca610b1",
-        "type": "json",
-        "z": "c7ac44f868b6d0a5",
-        "name": "",
-        "property": "payload",
-        "action": "str",
-        "pretty": false,
-        "x": 910,
-        "y": 340,
-        "wires": [
-            [
-                "493adddb8d47ade8"
-            ]
-        ]
     },
     {
         "id": "2019ad2eacd1aa48",
         "type": "function",
         "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
         "name": "BuscarSolicitação",
         "func": "msg.topic = \"SELECT * FROM solicitacao\";\nreturn msg;",
         "outputs": 1,
@@ -371,11 +333,32 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 400,
+        "x": 390,
+        "y": 380,
         "wires": [
             [
                 "fcf02662264960c9"
+            ]
+        ]
+    },
+    {
+        "id": "76f44f2ce02e35d6",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
+        "name": "Converter Data",
+        "func": "msg.payload = msg.payload.map(solicitacao => {\n    if (solicitacao.data) {\n        const dataOriginal = new Date(solicitacao.data);\n        const dia = String(dataOriginal.getDate()).padStart(2, '0');\n        const mes = String(dataOriginal.getMonth() + 1).padStart(2, '0');\n        const ano = dataOriginal.getFullYear();\n        solicitacao.data = `${dia}/${mes}/${ano}`;\n    }\n    return solicitacao;\n});\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 380,
+        "wires": [
+            [
+                "493adddb8d47ade8"
             ]
         ]
     },

@@ -16,30 +16,55 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `maquinas`
+-- Table structure for table `maquina`
 --
 
-DROP TABLE IF EXISTS `maquinas`;
+DROP TABLE IF EXISTS `maquina`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `maquinas` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  `temperatura` float DEFAULT NULL,
-  `status_maquina` tinyint DEFAULT NULL,
-  `tempo` time DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `maquina` (
+  `id_maquina` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `tempo_de_funcionamento` datetime DEFAULT NULL,
+  `status` enum('ativo','inativo','Em manutencao') DEFAULT NULL,
+  PRIMARY KEY (`id_maquina`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `maquinas`
+-- Dumping data for table `maquina`
 --
 
-LOCK TABLES `maquinas` WRITE;
-/*!40000 ALTER TABLE `maquinas` DISABLE KEYS */;
-INSERT INTO `maquinas` VALUES (1,'Citizen L20',NULL,NULL,NULL),(2,'DMG Mori CMX 1100V',NULL,NULL,NULL);
-/*!40000 ALTER TABLE `maquinas` ENABLE KEYS */;
+LOCK TABLES `maquina` WRITE;
+/*!40000 ALTER TABLE `maquina` DISABLE KEYS */;
+INSERT INTO `maquina` VALUES (1,'Citizen L20',NULL,'ativo');
+/*!40000 ALTER TABLE `maquina` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `registro`
+--
+
+DROP TABLE IF EXISTS `registro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `registro` (
+  `id_registro` int NOT NULL AUTO_INCREMENT,
+  `id_maquina` int NOT NULL,
+  `data_hora` datetime NOT NULL,
+  PRIMARY KEY (`id_registro`),
+  KEY `id_maquina` (`id_maquina`),
+  CONSTRAINT `registro_ibfk_1` FOREIGN KEY (`id_maquina`) REFERENCES `maquina` (`id_maquina`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registro`
+--
+
+LOCK TABLES `registro` WRITE;
+/*!40000 ALTER TABLE `registro` DISABLE KEYS */;
+/*!40000 ALTER TABLE `registro` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -50,17 +75,19 @@ DROP TABLE IF EXISTS `solicitacao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `solicitacao` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nomesolicitante` varchar(100) NOT NULL,
-  `tipo` varchar(100) NOT NULL,
-  `urgencia` varchar(100) NOT NULL,
-  `idmaquina` varchar(2) DEFAULT NULL,
-  `departamento` varchar(100) NOT NULL,
-  `dataSolicitacao` date NOT NULL,
+  `id_solicitacao` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) DEFAULT NULL,
+  `tipo` enum('Informatica','Infraestrutura','Mobiliario','Industrial') DEFAULT NULL,
+  `urgencia` enum('Alta','Média','Baixa') DEFAULT NULL,
   `descricao` text NOT NULL,
-  `statussolicitacao` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_maquina` int DEFAULT NULL,
+  `departamento` varchar(60) NOT NULL,
+  `data` date NOT NULL,
+  `status_solicitacao` enum('Em andamento','Concluido','Em avaliacao') DEFAULT NULL,
+  PRIMARY KEY (`id_solicitacao`),
+  KEY `id_maquina` (`id_maquina`),
+  CONSTRAINT `solicitacao_ibfk_1` FOREIGN KEY (`id_maquina`) REFERENCES `maquina` (`id_maquina`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,8 +96,34 @@ CREATE TABLE `solicitacao` (
 
 LOCK TABLES `solicitacao` WRITE;
 /*!40000 ALTER TABLE `solicitacao` DISABLE KEYS */;
-INSERT INTO `solicitacao` VALUES (1,'teste2','Infraestrutura','Media','','asdasd','2151-02-20','dsadasd','emandamento'),(2,'teste3','Mobiliario','Media','','asdasd','2151-02-20','dsadasd','emandamento'),(3,'teste4','Industrial','Alta','1','Usinagem','2025-04-20','Teste 4 de banco de dados','emandamento'),(4,'teste 6','Infraestrutura','Alta','','asdasd','1551-02-21','sdasdasd','emandamento'),(5,'teste 7','Infraestrutura','Media','','Compras','4454-02-20','asdasdasd','emandamento'),(6,'teste 7','Infraestrutura','Media','','Compras','4454-02-20','asdasdasd','emandamento'),(7,'Guilherme','Industrial','Media','2','Compras','1515-02-20','macaco','emandamento'),(8,'123','Infraestrutura','Media','','123','0123-03-12','123123','emandamento'),(9,'asdasd','Mobiliario','Baixa','','asdasdad','1555-12-12','asdasdasd','emandamento'),(10,'Guilherme','Infraestrutura','Media','','asd','2131-03-12','asdasd','emandamento');
+INSERT INTO `solicitacao` VALUES (1,'Guilherme Soares','Infraestrutura','Média','O ar quebrou.',NULL,'Montagem','2025-04-22','Em avaliacao'),(2,'Henrique Linhares','Industrial','Alta','A maquina não está rodando o programa.',1,'Usinagem','2025-04-22','Em avaliacao'),(3,'Guilherme dos Anjos','Mobiliario','Baixa','Uma cadeira quebrou.',NULL,'Recebimento','2025-04-22','Em avaliacao'),(4,'Adryan Motta','Informatica','Alta','Meu pc não liga.',NULL,'T.I','2025-04-22','Em avaliacao'),(5,'Joao Colleto','Infraestrutura','Média','A parede apresenta mofo.',NULL,'Expedição','2025-04-22','Em avaliacao'),(6,'Guilherme Soares','Mobiliario','Baixa','Uma cadeira quebrou.',NULL,' Montagem','2025-04-23','Em avaliacao'),(7,'Henrique Linhares','Infraestrutura','Média','A mesa está bamba.',NULL,'Compras','2025-04-20','Em avaliacao');
 /*!40000 ALTER TABLE `solicitacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario` (
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `senha` varchar(10) NOT NULL,
+  `tipo_usuario` enum('Administrador','Colaborador','Manutencao') DEFAULT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -90,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-20 17:47:30
+-- Dump completed on 2025-04-22 21:20:19
