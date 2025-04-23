@@ -1,193 +1,162 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles/style-solicitacoes.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-    <script src="js/Solicitacoes.js" defer></script>
-    <title>FixNow - Solicitações</title>
-  </head>
 
-  <body>
-    <header>
-      <div class="header-logo">
-        <a href="/index.html"
-          ><img src="images/logo-transparente.png" alt=""
-        /></a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles/style-solicitacoes.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <script src="js/Solicitacoes.js" defer></script>
+  <title>FixNow - Solicitações</title>
+</head>
+
+<body>
+  <header>
+    <div class="header-logo">
+      <a href="/index.html"><img src="images/logo-transparente.png" alt="" /></a>
+    </div>
+    <nav>
+      <ul class="menu-list">
+        <li class="menu-item"><a href="#">Solicitações</a></li>
+        <li class="menu-item">
+          <a href="monitoramento.html">Monitoramento</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="user">
+      <img src="images/user-solid.svg" alt="" />
+      <p>User</p>
+    </div>
+  </header>
+
+  <h1 class="main-title">Minhas Solicitações</h1>
+
+  <div class="box-filtro">
+    <p>Filtrar por:</p>
+
+    <div class="button-filtro" id="button-emandamento">
+      <p>Em andamento</p>
+    </div>
+
+    <div class="button-filtro" id="button-concluido">
+      <p>Concluido</p>
+    </div>
+
+    <div class="button-filtro" id="button-naoconcluido">
+      <p>Não concluido</p>
+    </div>
+
+    <button class="criar-solicitacao">
+      <p>Criar Solicitação</p>
+      <img src="images/plus-solid.svg" alt="" />
+    </button>
+  </div>
+
+
+
+
+  <main>
+    <div class="solicitacao" style="display: none;">
+      <h3 class="solicitacao-title">Solicitacão #0001</h3>
+      <p>Tipo: industrial</p>
+      <p>Data: 22/03/2025</p>
+      <p>Profissional Responsalvel: João Colleto</p>
+      <strong><div id="detalhesStatusContainer" class="button-status"></div></strong>
+        <h3></h3>
       </div>
-      <nav>
-        <ul class="menu-list">
-          <li class="menu-item"><a href="#">Solicitações</a></li>
-          <li class="menu-item">
-            <a href="monitoramento.html">Monitoramento</a>
-          </li>
-        </ul>
-      </nav>
 
-      <div class="user">
-        <img src="images/user-solid.svg" alt="" />
-        <p>User</p>
-      </div>
-    </header>
-
-    <h1 class="main-title">Minhas Solicitações</h1>
-
-    <div class="box-filtro">
-      <p>Filtrar por:</p>
-
-      <div class="button-filtro" id="button-emandamento">
-        <p>Em andamento</p>
-      </div>
-
-      <div class="button-filtro" id="button-concluido">
-        <p>Concluido</p>
-      </div>
-
-      <div class="button-filtro" id="button-naoconcluido">
-        <p>Não concluido</p>
-      </div>
-
-      <button class="criar-solicitacao">
-        <p>Criar Solicitação</p>
-        <img src="images/plus-solid.svg" alt="" />
-      </button>
+      <a href="#" class="button-vermais">Ver mais</a>
     </div>
 
 
 
 
-    <main>
-      <div class="solicitacao">
-        <h3 class="solicitacao-title">Solicitacão #0001</h3>
-        <p>Tipo: industrial</p>
-        <p>Data: 22/03/2025</p>
-        <p>Profissional Responsalvel: João Colleto</p>
-        <div class="button-status" id="button-status_emandamento">
-          <h3>Em andamento</h3>
+
+
+
+    </div>
+    </div>
+  </main>
+
+  <div id="popupSolicitacao" class="popup-overlay">
+    <div class="popup-content">
+      <h2>Nova Solicitação</h2>
+      <form id="formNovaSolicitacao">
+        <label for="nomeSolicitacao">Nome do solicitante:</label>
+        <input type="text" id="nomeSolicitacao" required /><br />
+
+        <label for="tipoSolicitacao">Tipo de equipamento: </label>
+        <select id="tipoSolicitacao" required onchange="verificarTipo()">
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="Informatica">Informática</option>
+          <option value="Industrial">Industrial</option>
+          <option value="Infraestrutura">Infraestrutura</option>
+          <option value="Mobiliario">Mobiliário</option>
+        </select>
+
+        <br>
+        <br>
+
+        <label for="urgenciaSolicitacao">Urgencia: </label>
+        <select id="urgenciaSolicitacao" required>
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="Baixa">Baixa</option>
+          <option value="Media">Media</option>
+          <option value="Alta">Alta</option>
+        </select>
+
+        <br>
+        <br>
+
+        <div id="campoIdMaquina" style="display: none;">
+          <label for="idMaquinaSolicitacao">ID da máquina:</label>
+          <input type="number" id="idMaquinaSolicitacao" />
+          <br>
         </div>
 
-        <a href="#" class="button-vermais">Ver mais</a>
-      </div>
+        <label for="departamentoSolicitacao">Departamento:</label>
+        <input type="text" id="departamentoSolicitacao" required /><br />
 
-      <div class="solicitacao">
-        <h3 class="solicitacao-title">Solicitacão #0001</h3>
-        <p>Tipo: industrial</p>
-        <p>Data: 22/03/2025</p>
-        <p>Profissional Responsalvel: João Colleto</p>
-        <div class="button-status" id="button-status_concluido">
-          <h3>Concluido</h3>
-        </div>
+        <label for="dataSolicitacao">Data:</label>
+        <input type="date" id="dataSolicitacao" required /><br />
 
-        <a href="#" class="button-vermais">Ver mais</a>
-      </div>
-
-      <div class="solicitacao">
-        <h3 class="solicitacao-title">Solicitacão #0001</h3>
-        <p>Tipo: industrial</p>
-        <p>Data: 22/03/2025</p>
-        <p>Profissional Responsalvel: João Colleto</p>
-        <div class="button-status" id="button-status_naoconcluido">
-          <h3>Não concluido</h3>
-        </div>
-
-        <a href="#" class="button-vermais">Ver mais</a>
-      </div>
-
-
-
-
-      
-           
-        </div>
-      </div>
-    </main>
-
-    <div id="popupSolicitacao" class="popup-overlay">
-      <div class="popup-content">
-        <h2>Nova Solicitação</h2>
-        <form id="formNovaSolicitacao">
-          <label for="nomeSolicitacao">Nome do solicitante:</label>
-          <input type="text" id="nomeSolicitacao" required  /><br />
-
-          <label for="tipoSolicitacao">Tipo de equipamento: </label>
-          <select id="tipoSolicitacao" required onchange="verificarTipo()">
-            <option value="" disabled selected>Selecione uma opção</option>
-            <option value="Informatica">Informática</option>
-            <option value="Industrial">Industrial</option>
-            <option value="Infraestrutura">Infraestrutura</option>
-            <option value="Mobiliario">Mobiliário</option>
-          </select>
-
-          <br>
-          <br>
-
-          <label for="urgenciaSolicitacao">Urgencia: </label>
-          <select id="urgenciaSolicitacao" required>
-            <option value="" disabled selected>Selecione uma opção</option>
-            <option value="Baixa">Baixa</option>
-            <option value="Media">Media</option>
-            <option value="Alta">Alta</option>
-          </select>
-          
-          <br>
-          <br>
-
-          <div id="campoIdMaquina" style="display: none;">
-            <label for="idMaquinaSolicitacao">ID da máquina:</label>
-            <input type="number" id="idMaquinaSolicitacao" />
-            <br>
-          </div>
-
-          <label for="departamentoSolicitacao">Departamento:</label>
-          <input type="text" id="departamentoSolicitacao" required /><br />
-
-          <label for="dataSolicitacao">Data:</label>
-          <input type="date" id="dataSolicitacao" required /><br />
-
-          <!-- <label for="responsavelSolicitacao">Responsável:</label>
+        <!-- <label for="responsavelSolicitacao">Responsável:</label>
           <input type="text" id="responsavelSolicitacao" required /><br /> -->
 
-          <label for="descricaoSolicitacao">Descrição:</label>
-          <textarea id="descricaoSolicitacao" rows="4" cols="30" required></textarea><br>
+        <label for="descricaoSolicitacao">Descrição:</label>
+        <textarea id="descricaoSolicitacao" rows="4" cols="30" required></textarea><br>
 
-          <button type="submit" class="criar-button">Criar</button>
-          <button type="button" class="fechar-button" onclick="fecharPopup()">
-            Fechar
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <div id="popupDetalhesSolicitacao" class="popup-detalhes-overlay">
-      <div class="popup-detalhes-content">
-        <h2>Detalhes da Solicitação</h2>
-        <p><strong>Nome:</strong> <span id="detalhesNome"></span></p>
-        <p><strong>Tipo:</strong> <span id="detalhesTipo"></span></p>
-        <p><strong>Data:</strong> <span id="detalhesData"></span></p>
-        <p>
-          <strong>Responsável:</strong> <span id="detalhesResponsavel"></span>
-        </p>
-        <p>
-          <strong>Descrição:</strong> <span id="detalhesDescricao"></span>
-        </p>
-        <button
-          type="button"
-          class="fechar-detalhes-button"
-          onclick="fecharPopupDetalhes()"
-        >
+        <button type="submit" class="criar-button">Criar</button>
+        <button type="button" class="fechar-button" onclick="fecharPopup()">
           Fechar
         </button>
-          </form>
-      </div>
+      </form>
     </div>
-    
-  </body>
+  </div>
+
+  <div id="popupDetalhesSolicitacao" class="popup-detalhes-overlay">
+    <div class="popup-detalhes-content">
+      <h2>Detalhes da Solicitação</h2>
+      <p><strong>Nome:</strong> <span id="detalhesNome"></span></p>
+      <p><strong>Tipo:</strong> <span id="detalhesTipo"></span></p>
+      <p><strong>Data:</strong> <span id="detalhesData"></span></p>
+      <p><strong>Departamento: </strong><span id="detalhesDepartamento"></span></p>
+      <p><strong>Urgencia: </strong><span id="detalhesUrgencia"></span></p>
+      <p> <strong>Descrição:</strong> <span id="detalhesDescricao"></span> </p>
+      <div id="detalhesStatusContainer" class="button-status-detalhes"></div>
+      <button type="button" class="fechar-detalhes-button" onclick="fecharPopupDetalhes()">
+        Fechar
+      </button>
+      </form>
+    </div>
+  </div>
+
+</body>
+
 </html>

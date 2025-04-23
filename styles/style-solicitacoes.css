@@ -109,7 +109,43 @@ main{
 
 
  /* Botoes de status das solicitacoes */
- .button-status{
+
+/* Status dentro do popup */
+/* Status no CARD */
+.button-status-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 5px;
+    margin: 10px 0;
+    color: white;
+    font-weight: bold;
+}
+
+/* Status no POPUP */
+.button-status-detalhes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 15px 0;
+    color: white;
+    font-weight: bold;
+}
+
+/* Cores para os status (compartilhadas entre card e popup) */
+#button-status-card_Em_avaliacao,
+#button-status-detalhes_Em_avaliacao {
+    background-color: #0cb4df;
+}
+
+#button-status-card_Em_andamento,
+#button-status-detalhes_Em_andamento {
+    background-color: #D7B600;
+}
+ /* .button-status{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -138,7 +174,7 @@ main{
     border-radius: 30px;
     width: 100%;
     height: 50px;
-}
+} */
 
 
 /* botao ver mais das solicitacoes */
