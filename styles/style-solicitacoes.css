@@ -117,9 +117,8 @@ main{
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    padding: 5px;
-    margin: 10px 0;
-    color: white;
+    height: 30px;
+    color: rgb(0, 0, 0);
     font-weight: bold;
 }
 

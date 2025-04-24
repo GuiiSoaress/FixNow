@@ -36,7 +36,7 @@
             }
         },
         {
-            "name": "http://127.0.0.1:1880/buscarsolicitaca",
+            "name": "http://127.0.0.1:1880/buscarsolicitacao",
             "request": {
                 "method": "GET",
                 "url": {

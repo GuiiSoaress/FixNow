@@ -2,7 +2,7 @@ CREATE DATABASE fixnow;
 USE fixnow;
 
 CREATE TABLE maquina (
-  id_maquina int null AUTO_INCREMENT,
+  id_maquina int AUTO_INCREMENT,
   nome varchar(50) NOT NULL,
   tempo_de_funcionamento datetime DEFAULT NULL,
   status enum('ativo','inativo','Em manutencao') DEFAULT NULL,

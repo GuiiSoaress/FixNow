@@ -9,7 +9,7 @@ $(document).ready(function () {
   const detalhesUrgencia = $("#detalhesUrgencia");
   const detalhesData = $("#detalhesData");
   const detalhesDescricao = $("#detalhesDescricao");
-  const detalhesStatusContainer = $("#detalhesStatusContainer");
+  const detalhesStatus = $("#detalhesStatus");
   let contadorSolicitacoes = listaDeSolicitacoes.find(".solicitacao").length + 1;
 
   criarSolicitacaoBotao.on("click", function () {
@@ -77,9 +77,8 @@ $(document).ready(function () {
     detalhesUrgencia.text(urgencia);
     detalhesData.text(data);
     detalhesDescricao.text(descricao);
-    detalhesStatusContainer.text(status);
-    
-    // Normaliza o ID para o status (substitui espaços por underline ou escape)
+    $("#detalhesStatusContainer").text(status);
+
     $("#popupDetalhesSolicitacao").css("display", "flex");
   };
 
@@ -154,7 +153,6 @@ $(document).ready(function () {
     const urgencia = $(this).data("urgencia");
     const descricao = $(this).data("descricao");
     const status = $(this).data("status");
-
     abrirPopupDetalhes(nome, tipo, departamento, urgencia, data, descricao, status);
   }); // Fechamento correto do bloco .button-vermais
 }); // Fechamento correto do $(document).ready()
