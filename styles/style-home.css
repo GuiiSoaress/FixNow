@@ -165,3 +165,15 @@ article{
     padding: 10px;
     font-weight: 700;
 }
+
+.button-export {
+    align-items: center;
+    justify-content: center;
+    background-color: #0096d7;
+    border-radius: 30px;
+    width: 50%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #f1f1f1;
+}

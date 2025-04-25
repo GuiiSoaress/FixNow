@@ -40,29 +40,27 @@
   <div class="box-filtro">
     <p>Filtrar por:</p>
 
-    <div class="button-filtro" id="button-emandamento">
-      <p>Em andamento</p>
-    </div>
+    <button class="button-filtro" id="button-filtro-emavaliacao" onclick="buscarSolicitacoesEmAvaliacao()">
+      <p>Em avaliação</p>
+    </button>
     
-    <div class="button-filtro" id="button-emandamento">
+    <button class="button-filtro" id="button-filtro-emandamento" onclick="buscarSolicitacoesEmandamento()">
       <p>Em andamento</p>
-    </div>
+    </button>
 
-    <div class="button-filtro" id="button-concluido">
+    <button class="button-filtro" id="button-filtro-concluido" onclick="buscarSolicitacoesConcluido()">
       <p>Concluido</p>
-    </div>
+    </button>
 
-    <div class="button-filtro" id="button-naoconcluido">
+    <button class="button-filtro" id="button-filtro-naoconcluido">
       <p>Não concluido</p>
-    </div>
+    </button>
 
     <button class="criar-solicitacao">
       <p>Criar Solicitação</p>
       <img src="images/plus-solid.svg" alt="" />
     </button>
   </div>
-
-
 
 
   <main>
@@ -77,11 +75,6 @@
 
       <a href="#" class="button-vermais">Ver mais</a>
     </div>
-
-
-
-
-
 
 
     </div>

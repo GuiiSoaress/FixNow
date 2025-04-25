@@ -29,7 +29,6 @@ $(document).ready(function () {
       success: function (data) {
         console.log("Dados das solicitações recebidos:", data);
         listaDeSolicitacoes.empty();
-        contadorSolicitacoes = 1;
         $.each(data, function (index, solicitacao) {
 
           const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
@@ -65,6 +64,135 @@ $(document).ready(function () {
     });
   }
 
+  window.buscarSolicitacoesEmAvaliacao = function ()  {
+    $.ajax({
+      url: "http://127.0.0.1:1880/buscarsolicitacaoeEmavaliacao",
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        console.log("Dados das solicitações recebidos:", data);
+        listaDeSolicitacoes.empty();
+        $.each(data, function (index, solicitacao) {
+  
+          const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
+          const novoCard = $("<div>", { class: "solicitacao" }).append(
+            $("<h3>", { class: "solicitacao-title" }).text(`Solicitação #${solicitacao.id_solicitacao}`),
+            $("<p>").text(`Tipo: ${solicitacao.tipo}`),
+            $("<p>").text(`Departamento: ${solicitacao.departamento}`),
+            $("<p>").text(`Data: ${solicitacao.data}`),
+            $("<div>", {
+              class: "button-status-card",
+              id: `button-status-card_${statusId}`  // Ex: "button-status-card_Em_avaliacao"
+            }).append($("<h3>").text(solicitacao.status_solicitacao)),
+            $("<a>", {
+              href: "#",
+              class: "button-vermais",
+              "data-nome": solicitacao.nome,
+              "data-tipo": solicitacao.tipo,
+              "data-departamento": solicitacao.departamento,
+              "data-urgencia": solicitacao.urgencia,
+              "data-idmaquina": solicitacao.id_maquina,
+              "data-data": solicitacao.data,
+              "data-descricao": solicitacao.descricao,
+              "data-status": solicitacao.status_solicitacao
+            }).text("Ver mais")
+          );
+          listaDeSolicitacoes.append(novoCard);
+          
+        });
+      },
+      error: function (error) {
+        console.error("Erro ao buscar as solicitações:", error);
+      },
+    });
+  }
+
+  window.buscarSolicitacoesEmandamento = function ()  {
+    $.ajax({
+      url: "http://127.0.0.1:1880/buscarsolicitacaoeEmandamento",
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        console.log("Dados das solicitações recebidos:", data);
+        listaDeSolicitacoes.empty();
+        $.each(data, function (index, solicitacao) {
+  
+          const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
+          const novoCard = $("<div>", { class: "solicitacao" }).append(
+            $("<h3>", { class: "solicitacao-title" }).text(`Solicitação #${solicitacao.id_solicitacao}`),
+            $("<p>").text(`Tipo: ${solicitacao.tipo}`),
+            $("<p>").text(`Departamento: ${solicitacao.departamento}`),
+            $("<p>").text(`Data: ${solicitacao.data}`),
+            $("<div>", {
+              class: "button-status-card",
+              id: `button-status-card_${statusId}`  // Ex: "button-status-card_Em_avaliacao"
+            }).append($("<h3>").text(solicitacao.status_solicitacao)),
+            $("<a>", {
+              href: "#",
+              class: "button-vermais",
+              "data-nome": solicitacao.nome,
+              "data-tipo": solicitacao.tipo,
+              "data-departamento": solicitacao.departamento,
+              "data-urgencia": solicitacao.urgencia,
+              "data-idmaquina": solicitacao.id_maquina,
+              "data-data": solicitacao.data,
+              "data-descricao": solicitacao.descricao,
+              "data-status": solicitacao.status_solicitacao
+            }).text("Ver mais")
+          );
+          listaDeSolicitacoes.append(novoCard);
+          
+        });
+      },
+      error: function (error) {
+        console.error("Erro ao buscar as solicitações:", error);
+      },
+    });
+  }
+
+  window.buscarSolicitacoesConcluido = function ()  {
+    $.ajax({
+      url: "http://127.0.0.1:1880/buscarsolicitacaoconcluido",
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        console.log("Dados das solicitações recebidos:", data);
+        listaDeSolicitacoes.empty();
+        $.each(data, function (index, solicitacao) {
+  
+          const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
+          const novoCard = $("<div>", { class: "solicitacao" }).append(
+            $("<h3>", { class: "solicitacao-title" }).text(`Solicitação #${solicitacao.id_solicitacao}`),
+            $("<p>").text(`Tipo: ${solicitacao.tipo}`),
+            $("<p>").text(`Departamento: ${solicitacao.departamento}`),
+            $("<p>").text(`Data: ${solicitacao.data}`),
+            $("<div>", {
+              class: "button-status-card",
+              id: `button-status-card_${statusId}`  // Ex: "button-status-card_Em_avaliacao"
+            }).append($("<h3>").text(solicitacao.status_solicitacao)),
+            $("<a>", {
+              href: "#",
+              class: "button-vermais",
+              "data-nome": solicitacao.nome,
+              "data-tipo": solicitacao.tipo,
+              "data-departamento": solicitacao.departamento,
+              "data-urgencia": solicitacao.urgencia,
+              "data-idmaquina": solicitacao.id_maquina,
+              "data-data": solicitacao.data,
+              "data-descricao": solicitacao.descricao,
+              "data-status": solicitacao.status_solicitacao
+            }).text("Ver mais")
+          );
+          listaDeSolicitacoes.append(novoCard);
+          
+        });
+      },
+      error: function (error) {
+        console.error("Erro ao buscar as solicitações:", error);
+      },
+    });
+  }
+
   window.fecharPopup = function () {
     $("#popupSolicitacao").css("display", "none");
     formNovaSolicitacao[0].reset();
@@ -77,7 +205,7 @@ $(document).ready(function () {
     detalhesUrgencia.text(urgencia);
     detalhesData.text(data);
     detalhesDescricao.text(descricao);
-    $("#detalhesStatusContainer").text(status);
+    $("#detalhesStatusContainer ").text(status);
 
     $("#popupDetalhesSolicitacao").css("display", "flex");
   };
@@ -169,3 +297,4 @@ function verificarTipo() {
     document.getElementById("idMaquinaSolicitacao").removeAttribute("required");
   }
 }
+

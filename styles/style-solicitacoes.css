@@ -137,12 +137,17 @@ main{
 /* Cores para os status (compartilhadas entre card e popup) */
 #button-status-card_Em_avaliacao,
 #button-status-detalhes_Em_avaliacao {
-    background-color: #0cb4df;
+    background-color: #f77825;
 }
 
 #button-status-card_Em_andamento,
 #button-status-detalhes_Em_andamento {
     background-color: #D7B600;
+}
+
+#button-status-card_Concluido,
+#button-status-detalhes_Concluido{
+    background-color: #67B588;
 }
  /* .button-status{
     display: flex;
@@ -218,22 +223,28 @@ main{
     height: 30px;
     
 }
+#button-filtro-emavaliacao{
+    background-color: #f77825;
+    font-size: 12px;
+    padding: 0px 10px 0px 10px;
+    font-weight: 500;
+}
 
-#button-concluido{
+#button-filtro-concluido{
     background-color: #67B588;
     font-size: 12px;
     padding: 0px 10px 0px 10px;
     font-weight: 500;
 }
 
-#button-emandamento{
+#button-filtro-emandamento{
     background-color: #D7B600;
     font-size: 12px;
     padding: 0px 10px 0px 10px;
     font-weight: 500;
 }
 
-#button-naoconcluido{
+#button-filtro-naoconcluido{
     background-color: #E72313;
     font-size: 12px;
     padding: 0px 10px 0px 10px;
