@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/styles/style-monitoramento.css">
-    <script src="js/Manutencao.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/monitoramento.js" defer></script>
     <title>Monitoramento</title>
 </head>
 
@@ -35,39 +37,8 @@
         <section>
             <div class="section-content">
                 <h3>Máquinas Ativas</h3>
-                <div class="machine">
-                    <div id="identificador"></div>
-                    <div class="nome-maquina" id="nome-maquina">carregando</div>
-                    <div class="blocks">
-                        <div class="info-bloc">
-                            <div id="tempo">----</div>
-                        </div>
-                        <div class="info-bloc">
-                            <div id="resultado">Carregando...</div>
-                        </div>
-                        <div class="status-active">
-                            <p>Ativa</p>
-                        </div>
-                        <div class="status-inactive" id="status-inactive">
-                            <p>Desligada</p>
-                        </div>
-                    </div>
-                </div>
-                <script src="script.js"></script>
-                <div class="machine">
-                    <p>DMG Mori CMX 1100V</p>
-                    <div class="blocks">
-                        <div class="info-bloc">
-                            <p>00:00:00</p>
-                        </div>
-                        <div class="info-bloc">
-                            <p>85°c</p>
-                        </div>
-                        <div class="status-active" id="status-active">
-                            <p>Ativa</p>
-                        </div>
+                <div id="lista-maquinas" >
 
-                    </div>
                 </div>
                 
             </div>
@@ -91,7 +62,6 @@
             </div>
         </section>
     </main>
-    <script src="/js/script.js"></script>
 </body>
 
 </html>

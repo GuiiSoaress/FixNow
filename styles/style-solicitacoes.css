@@ -385,3 +385,12 @@ main{
     display: block;
     margin: 15px auto 0;
 }
+
+
+.button-reload{
+    width: 40px;
+    height: auto;
+    border: none;
+    display: flex;
+    gap: 10px;
+}

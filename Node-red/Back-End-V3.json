@@ -1,0 +1,736 @@
+[
+    {
+        "id": "c7ac44f868b6d0a5",
+        "type": "tab",
+        "label": "FixNow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7de83f24fe07e557",
+        "type": "group",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Salvar Solicitação",
+        "style": {
+            "label": true,
+            "stroke": "#ffff00"
+        },
+        "nodes": [
+            "56b8a54e3a89ae3f",
+            "fdddec48fa373a64",
+            "59f72c4e8c5af560",
+            "1b9215387fb95734"
+        ],
+        "x": 34,
+        "y": 259,
+        "w": 1232,
+        "h": 82
+    },
+    {
+        "id": "3b02f041768a5ab2",
+        "type": "group",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Buscar Solicitações (também utilizado para exportar o csv)",
+        "style": {
+            "label": true,
+            "stroke": "#92d04f"
+        },
+        "nodes": [
+            "e73fc4c084409107",
+            "fcf02662264960c9",
+            "493adddb8d47ade8",
+            "2019ad2eacd1aa48",
+            "76f44f2ce02e35d6"
+        ],
+        "x": 34,
+        "y": 459,
+        "w": 1232,
+        "h": 82
+    },
+    {
+        "id": "b06df0db67a3e98f",
+        "type": "group",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Buscar Solicitações com filtro EM AVALIACAO",
+        "style": {
+            "label": true,
+            "stroke": "#92d04f"
+        },
+        "nodes": [
+            "c7a5045600e08082",
+            "f126f69c954d5a53",
+            "0949d7e27f579b1f",
+            "74c56810ad685ad8",
+            "188f99a08413efd3"
+        ],
+        "x": 34,
+        "y": 559,
+        "w": 1232,
+        "h": 82
+    },
+    {
+        "id": "3972e37853c09c97",
+        "type": "group",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Buscar Solicitações com filtro EM ANDAMENTO",
+        "style": {
+            "label": true,
+            "stroke": "#92d04f"
+        },
+        "nodes": [
+            "da18b3b0c1af91b0",
+            "834ac0e123c011c2",
+            "8deaadaccf2ca878",
+            "83860f857f639a88",
+            "fec920017173f86c"
+        ],
+        "x": 34,
+        "y": 659,
+        "w": 1232,
+        "h": 82
+    },
+    {
+        "id": "f5c91802e0648404",
+        "type": "group",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Buscar Solicitações com filtro CONCLUIDO",
+        "style": {
+            "label": true,
+            "stroke": "#92d04f"
+        },
+        "nodes": [
+            "ad60e2b86ada60cb",
+            "7edddfad58fbc62d",
+            "762926ca38a70e8b",
+            "cd79a13690f25350",
+            "7ff4f9c57eaf3826"
+        ],
+        "x": 34,
+        "y": 759,
+        "w": 1232,
+        "h": 82
+    },
+    {
+        "id": "b69c440efb9ab5b2",
+        "type": "group",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Leitura e armazenamento de sensores",
+        "style": {
+            "label": true,
+            "stroke": "#ff0000"
+        },
+        "nodes": [
+            "e28058d2b18e8fb5",
+            "d74260ba4e715d60",
+            "123103ab97afc255"
+        ],
+        "x": 34,
+        "y": 159,
+        "w": 632,
+        "h": 82
+    },
+    {
+        "id": "5d6a214be4284ba5",
+        "type": "group",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Buscar Maquinas",
+        "style": {
+            "stroke": "#92d04f",
+            "label": true
+        },
+        "nodes": [
+            "22a0a7c14a87560a",
+            "cfbfe8a5ea1932a9",
+            "7f1a3e9f99e1e601",
+            "94e1175a3b79e692",
+            "c2a08454ebe2fa08"
+        ],
+        "x": 34,
+        "y": 359,
+        "w": 1232,
+        "h": 82
+    },
+    {
+        "id": "e28058d2b18e8fb5",
+        "type": "serial in",
+        "z": "c7ac44f868b6d0a5",
+        "g": "b69c440efb9ab5b2",
+        "name": "UNO",
+        "serial": "8cf36e59907d8385",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "d74260ba4e715d60"
+            ]
+        ]
+    },
+    {
+        "id": "d74260ba4e715d60",
+        "type": "json",
+        "z": "c7ac44f868b6d0a5",
+        "g": "b69c440efb9ab5b2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "123103ab97afc255"
+            ]
+        ]
+    },
+    {
+        "id": "123103ab97afc255",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "b69c440efb9ab5b2",
+        "name": "armazenarTemperatura",
+        "func": "global.set(\"temperatura1\", msg.payload.temperatura1);\nglobal.set(\"temperatura2\", msg.payload.temperatura2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "56b8a54e3a89ae3f",
+        "type": "http in",
+        "z": "c7ac44f868b6d0a5",
+        "g": "7de83f24fe07e557",
+        "name": "",
+        "url": "/salvarsolicitacao",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 300,
+        "wires": [
+            [
+                "59f72c4e8c5af560"
+            ]
+        ]
+    },
+    {
+        "id": "fdddec48fa373a64",
+        "type": "mysql",
+        "z": "c7ac44f868b6d0a5",
+        "g": "7de83f24fe07e557",
+        "mydb": "7ad621cbb6ee4ae0",
+        "name": "FIXNOW",
+        "x": 740,
+        "y": 300,
+        "wires": [
+            [
+                "1b9215387fb95734"
+            ]
+        ]
+    },
+    {
+        "id": "59f72c4e8c5af560",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "7de83f24fe07e557",
+        "name": "SalvarSolicitacao",
+        "func": "let nome = msg.payload.nome;\nlet tipo = msg.payload.tipo;\nlet urgencia = msg.payload.urgencia;\nlet idMaquina = msg.payload.idMaquina;\nlet departamento = msg.payload.departamento;\nlet data = msg.payload.data;\nlet descricao = msg.payload.descricao;\nlet status = msg.payload.status; // Status padrão ao criar\n\n\nmsg.topic = \n    \"INSERT INTO solicitacao (nome, tipo, urgencia, id_maquina, departamento, data, descricao, status_solicitacao) VALUES (? ,?, ?, ? , ?, ?, ?, ? )\";\nmsg.payload = [nome, tipo, urgencia, idMaquina, departamento, data, descricao, status];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 300,
+        "wires": [
+            [
+                "fdddec48fa373a64"
+            ]
+        ]
+    },
+    {
+        "id": "e73fc4c084409107",
+        "type": "http in",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
+        "name": "",
+        "url": "/buscarsolicitacao",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 500,
+        "wires": [
+            [
+                "2019ad2eacd1aa48"
+            ]
+        ]
+    },
+    {
+        "id": "fcf02662264960c9",
+        "type": "mysql",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
+        "mydb": "7ad621cbb6ee4ae0",
+        "name": "FIXNOW",
+        "x": 740,
+        "y": 500,
+        "wires": [
+            [
+                "76f44f2ce02e35d6"
+            ]
+        ]
+    },
+    {
+        "id": "493adddb8d47ade8",
+        "type": "http response",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1190,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "2019ad2eacd1aa48",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
+        "name": "BuscarSolicitação",
+        "func": "msg.topic = \"SELECT * FROM solicitacao\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 500,
+        "wires": [
+            [
+                "fcf02662264960c9"
+            ]
+        ]
+    },
+    {
+        "id": "76f44f2ce02e35d6",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3b02f041768a5ab2",
+        "name": "Converter Data",
+        "func": "msg.payload = msg.payload.map(solicitacao => {\n    if (solicitacao.data) {\n        const dataOriginal = new Date(solicitacao.data);\n        const dia = String(dataOriginal.getDate()).padStart(2, '0');\n        const mes = String(dataOriginal.getMonth() + 1).padStart(2, '0');\n        const ano = dataOriginal.getFullYear();\n        solicitacao.data = `${dia}/${mes}/${ano}`;\n    }\n    return solicitacao;\n});\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 500,
+        "wires": [
+            [
+                "493adddb8d47ade8"
+            ]
+        ]
+    },
+    {
+        "id": "c7a5045600e08082",
+        "type": "http in",
+        "z": "c7ac44f868b6d0a5",
+        "g": "b06df0db67a3e98f",
+        "name": "",
+        "url": "/buscarsolicitacaoeEmavaliacao",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 600,
+        "wires": [
+            [
+                "74c56810ad685ad8"
+            ]
+        ]
+    },
+    {
+        "id": "f126f69c954d5a53",
+        "type": "mysql",
+        "z": "c7ac44f868b6d0a5",
+        "g": "b06df0db67a3e98f",
+        "mydb": "7ad621cbb6ee4ae0",
+        "name": "FIXNOW",
+        "x": 740,
+        "y": 600,
+        "wires": [
+            [
+                "188f99a08413efd3"
+            ]
+        ]
+    },
+    {
+        "id": "0949d7e27f579b1f",
+        "type": "http response",
+        "z": "c7ac44f868b6d0a5",
+        "g": "b06df0db67a3e98f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1190,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "74c56810ad685ad8",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "b06df0db67a3e98f",
+        "name": "BuscarSolicitação",
+        "func": "msg.topic = \"SELECT * FROM solicitacao WHERE status_solicitacao=\\'Em avaliacao\\'\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 600,
+        "wires": [
+            [
+                "f126f69c954d5a53"
+            ]
+        ]
+    },
+    {
+        "id": "188f99a08413efd3",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "b06df0db67a3e98f",
+        "name": "Converter Data",
+        "func": "msg.payload = msg.payload.map(solicitacao => {\n    if (solicitacao.data) {\n        const dataOriginal = new Date(solicitacao.data);\n        const dia = String(dataOriginal.getDate()).padStart(2, '0');\n        const mes = String(dataOriginal.getMonth() + 1).padStart(2, '0');\n        const ano = dataOriginal.getFullYear();\n        solicitacao.data = `${dia}/${mes}/${ano}`;\n    }\n    return solicitacao;\n});\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 600,
+        "wires": [
+            [
+                "0949d7e27f579b1f"
+            ]
+        ]
+    },
+    {
+        "id": "da18b3b0c1af91b0",
+        "type": "http in",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3972e37853c09c97",
+        "name": "",
+        "url": "/buscarsolicitacaoeEmandamento",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 700,
+        "wires": [
+            [
+                "83860f857f639a88"
+            ]
+        ]
+    },
+    {
+        "id": "834ac0e123c011c2",
+        "type": "mysql",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3972e37853c09c97",
+        "mydb": "7ad621cbb6ee4ae0",
+        "name": "FIXNOW",
+        "x": 740,
+        "y": 700,
+        "wires": [
+            [
+                "fec920017173f86c"
+            ]
+        ]
+    },
+    {
+        "id": "8deaadaccf2ca878",
+        "type": "http response",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3972e37853c09c97",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1190,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "83860f857f639a88",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3972e37853c09c97",
+        "name": "BuscarSolicitação",
+        "func": "msg.topic = \"SELECT * FROM solicitacao WHERE status_solicitacao=\\'Em andamento\\'\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 700,
+        "wires": [
+            [
+                "834ac0e123c011c2"
+            ]
+        ]
+    },
+    {
+        "id": "fec920017173f86c",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "3972e37853c09c97",
+        "name": "Converter Data",
+        "func": "msg.payload = msg.payload.map(solicitacao => {\n    if (solicitacao.data) {\n        const dataOriginal = new Date(solicitacao.data);\n        const dia = String(dataOriginal.getDate()).padStart(2, '0');\n        const mes = String(dataOriginal.getMonth() + 1).padStart(2, '0');\n        const ano = dataOriginal.getFullYear();\n        solicitacao.data = `${dia}/${mes}/${ano}`;\n    }\n    return solicitacao;\n});\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 700,
+        "wires": [
+            [
+                "8deaadaccf2ca878"
+            ]
+        ]
+    },
+    {
+        "id": "ad60e2b86ada60cb",
+        "type": "http in",
+        "z": "c7ac44f868b6d0a5",
+        "g": "f5c91802e0648404",
+        "name": "",
+        "url": "/buscarsolicitacaoConcluido",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 800,
+        "wires": [
+            [
+                "cd79a13690f25350"
+            ]
+        ]
+    },
+    {
+        "id": "7edddfad58fbc62d",
+        "type": "mysql",
+        "z": "c7ac44f868b6d0a5",
+        "g": "f5c91802e0648404",
+        "mydb": "7ad621cbb6ee4ae0",
+        "name": "FIXNOW",
+        "x": 740,
+        "y": 800,
+        "wires": [
+            [
+                "7ff4f9c57eaf3826"
+            ]
+        ]
+    },
+    {
+        "id": "762926ca38a70e8b",
+        "type": "http response",
+        "z": "c7ac44f868b6d0a5",
+        "g": "f5c91802e0648404",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1190,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "cd79a13690f25350",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "f5c91802e0648404",
+        "name": "BuscarSolicitação",
+        "func": "msg.topic = \"SELECT * FROM solicitacao WHERE status_solicitacao=\\'Concluido\\'\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 800,
+        "wires": [
+            [
+                "7edddfad58fbc62d"
+            ]
+        ]
+    },
+    {
+        "id": "7ff4f9c57eaf3826",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "f5c91802e0648404",
+        "name": "Converter Data",
+        "func": "msg.payload = msg.payload.map(solicitacao => {\n    if (solicitacao.data) {\n        const dataOriginal = new Date(solicitacao.data);\n        const dia = String(dataOriginal.getDate()).padStart(2, '0');\n        const mes = String(dataOriginal.getMonth() + 1).padStart(2, '0');\n        const ano = dataOriginal.getFullYear();\n        solicitacao.data = `${dia}/${mes}/${ano}`;\n    }\n    return solicitacao;\n});\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 800,
+        "wires": [
+            [
+                "762926ca38a70e8b"
+            ]
+        ]
+    },
+    {
+        "id": "22a0a7c14a87560a",
+        "type": "http in",
+        "z": "c7ac44f868b6d0a5",
+        "g": "5d6a214be4284ba5",
+        "name": "",
+        "url": "/buscarmaquinas",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "cfbfe8a5ea1932a9"
+            ]
+        ]
+    },
+    {
+        "id": "1b9215387fb95734",
+        "type": "http response",
+        "z": "c7ac44f868b6d0a5",
+        "g": "7de83f24fe07e557",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1190,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "cfbfe8a5ea1932a9",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "5d6a214be4284ba5",
+        "name": "BuscarMaquina",
+        "func": "msg.topic = \"SELECT id_maquina, nome, status FROM maquina;\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 400,
+        "wires": [
+            [
+                "7f1a3e9f99e1e601"
+            ]
+        ]
+    },
+    {
+        "id": "7f1a3e9f99e1e601",
+        "type": "mysql",
+        "z": "c7ac44f868b6d0a5",
+        "g": "5d6a214be4284ba5",
+        "mydb": "7ad621cbb6ee4ae0",
+        "name": "FIXNOW",
+        "x": 740,
+        "y": 400,
+        "wires": [
+            [
+                "94e1175a3b79e692"
+            ]
+        ]
+    },
+    {
+        "id": "94e1175a3b79e692",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "5d6a214be4284ba5",
+        "name": "TEMPERATURA",
+        "func": "let temperatura1 = global.get('temperatura1');\nlet temperatura2 = global.get('temperatura2'); // Adicionei a segunda temperatura\nlet status = 1; // 1 = ligado\n\n// Cria array de máquinas\nlet maquinas = msg.payload.map(item => {\n    // Seleciona a temperatura correta baseada no ID\n    let temperatura;\n    if (item.id_maquina === 1) {\n        temperatura = temperatura1;\n        if (item.status === \"inativo\"){\n            temperatura = 0;\n        }\n    } else if (item.id_maquina === 2) {\n        temperatura = temperatura2;\n        if (item.status === \"inativo\") {\n            temperatura = 0;\n        }\n    } else {\n        temperatura = null; // ou um valor padrão caso os IDs sejam diferentes\n    }\n\n    \n    return {\n        id: item.id_maquina,\n        nome: item.nome,\n        temperatura: temperatura,\n        status: item.status\n    };\n});\n\nmsg.payload = maquinas;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 400,
+        "wires": [
+            [
+                "c2a08454ebe2fa08"
+            ]
+        ]
+    },
+    {
+        "id": "c2a08454ebe2fa08",
+        "type": "http response",
+        "z": "c7ac44f868b6d0a5",
+        "g": "5d6a214be4284ba5",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1190,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "8cf36e59907d8385",
+        "type": "serial-port",
+        "name": "UNO",
+        "serialport": "COM8",
+        "serialbaud": "9600",
+        "databits": 8,
+        "parity": "none",
+        "stopbits": 1,
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": 10000
+    },
+    {
+        "id": "7ad621cbb6ee4ae0",
+        "type": "MySQLdatabase",
+        "name": "FIXNOW",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "fixnow",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]

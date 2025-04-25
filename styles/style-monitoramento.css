@@ -1,13 +1,13 @@
-body{
- background-color: #f1f1f1;
- padding: 0;
- margin: 0;
- font-family: "Raleway", sans-serif;
+body {
+    background-color: #f1f1f1;
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
 }
 
 
 /* header */
-header{
+header {
     display: flex;
 
     align-items: center;
@@ -16,19 +16,20 @@ header{
     height: 70px;
     background-color: #14244C;
 }
-.header-logo img{
+
+.header-logo img {
     width: 170px;
     height: 50px;
 }
 
-.user img{
+.user img {
     width: 40px;
     height: 40px;
 
     padding-right: 10px;
 }
 
-.header-logo{
+.header-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,16 +37,16 @@ header{
     margin: 0px 10px 0px 10px;
 }
 
-nav{
+nav {
     display: flex;
 }
 
-.menu-list{
+.menu-list {
     display: flex;
     list-style: none;
 }
 
-.menu-item a{
+.menu-item a {
     text-decoration: none;
     color: white;
 
@@ -54,13 +55,13 @@ nav{
     font-weight: 500;
 }
 
-.user{
+.user {
     display: flex;
     margin-left: auto;
     margin-right: 30px;
     align-items: center;
 
-    
+
     font-size: 20px;
     font-weight: 500;
     color: white;
@@ -70,17 +71,17 @@ nav{
 
 
 /* main com conteudo */
-main{
+main {
     display: flex;
     justify-content: space-between;
 }
 
-.main-title{
+.main-title {
     margin-left: 30px;
 }
 
 /* blocos section com as maquinas */
-section{
+section {
     width: 50%;
     height: 500px;
     background-color: #cccbcb;
@@ -89,12 +90,112 @@ section{
 
 }
 
-.section-content{
+.section-content {
     margin: 10px 20px 10px 20px;
 }
 
+
+/* Estilo aprimorado para as máquinas */
+.machine {
+    background-color: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.identificador {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.nome-maquina {
+    font-size: 18px;
+    font-weight: 600;
+    color: #14244C;
+    margin: 4px 0;
+}
+
+.blocks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.info-bloc {
+    background-color: #f5f5f5;
+    border-radius: 16px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.temperatura {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.temperatura::after {
+    content: "°C";
+    font-size: 14px;
+    margin-left: 2px;
+}
+
+/* Melhorias nos status */
+.status-active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status-inactive {
+    background-color: #F44336;
+    color: white;
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status-maintenance {
+    background-color: #FF9800;
+    color: white;
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.machine {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.machine:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+
+.high-temp {
+    color: #e74c3c;
+    font-weight: 700;
+}
+
 /* bloco das maquinas */
-.machine{
+ /* .machine {
     background-color: white;
     width: 100%;
     height: 40px;
@@ -104,15 +205,17 @@ section{
     justify-content: space-between;
     align-items: center;
     margin: 10px 0px 10px 0px;
+    padding: 10px;
 }
 
-.blocks{
+.blocks {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 10px;
 }
-.info-bloc{
+
+.info-bloc {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,74 +225,61 @@ section{
     border-radius: 15px;
     margin: 0px 5px 0px 5px;
     padding: 0px 5px 0px 5px;
+}   
+
+
+.identificador {
+    font-weight: bold;
+    color: #14244C;
 }
 
-.status-active{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #67B588;
-    width: 70px;
-    height: 30px;
-    border-radius: 15px;
-    padding: 0px 5px 0px 5px; 
-    margin: 0px 5px 0px 5px;
-    display: none;
+.nome-maquina {
+    margin: 5px 0;
 }
 
-.status-inactive{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fa1717;
-    width: 70px;
-    height: 30px;
-    border-radius: 15px;
-    padding: 0px 5px 0px 5px; 
-    margin: 0px 5px 0px 5px;
 
-}
+
 
 .machine p {
     padding: 10px;
     font-weight: 700;
 }
 
-#resultado{
+.temperatura {
     font-family: "Raleway", sans-serif;
     font-weight: 500;
-}
+} */
 
 
 /* section alertas */
-.section-content_alertas{
+.section-content_alertas {
     padding: 20px;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    display:flex ;
+    display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.section-content_alertas h3{
+.section-content_alertas h3 {
     margin: 0;
 }
 
 
 /* Div de Alertas */
-.bloco-alerta{
+.bloco-alerta {
     background-color: white;
     border-radius: 20px;
     padding: 15px;
 
 }
 
-.bloco-alerta p{
+.bloco-alerta p {
     margin: 0;
 }
 
-.bloco-alerta_solicitacao{
+.bloco-alerta_solicitacao {
     display: flex;
     align-items: center;
     margin-top: 10px;
@@ -197,13 +287,52 @@ section{
 }
 
 /* botoes da solicitacao  */
-.button-alerta{
+.button-alerta {
     background-color: #D9D9D9;
     border-radius: 30px;
     padding: 5px 10px 5px 10px;
-}   
+}
 
-#button-alerta_emandamento{
-    background-color: #D7B600; 
+#button-alerta_emandamento {
+    background-color: #D7B600;
     margin-left: auto;
 }
+
+
+
+
+
+.status-active {
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.status-inactive {
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.status-maintenance {
+    background-color: orange;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+
+/* .status-inactive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fa1717;
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+    padding: 0px 5px 0px 5px;
+    margin: 0px 5px 0px 5px;
+
+} */
