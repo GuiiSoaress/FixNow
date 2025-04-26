@@ -44,24 +44,33 @@
             </div>
         </section>
         <section>
-            <div class="section-content_alertas">
-                <h3>Alertas</h3>
-                <div class="bloco-alerta">
-                    <p>Sistema: Foi gerada um solicitação de revisao para Fanuc robodrill</p>
-                    <div class="bloco-alerta_solicitacao">
-                        <p>Solicitação: #0023</p>
-                        <div class="button-alerta" id="button-alerta_emandamento">
-                            <p>Em andamento</p>
-                        </div>
-                        <div class="button-alerta">
-                            <p>Ver solicitação</p>
-                        </div>
+            <div class="section-content_solicitacao">
+                <h3>Solicitações de manutenção de maquinas industriais</h3>
+                <div class="bloco-solicitao" id="listaDeSolicitacoes">
 
-                    </div>
+
+
                 </div>
             </div>
         </section>
     </main>
+
+    <div id="popupDetalhesSolicitacao" class="popup-detalhes-overlay">
+        <div class="popup-detalhes-content">
+          <h2>Detalhes da Solicitação</h2>
+          <p><strong>Nome:</strong> <span id="detalhesNome"></span></p>
+          <p><strong>Tipo:</strong> <span id="detalhesTipo"></span></p>
+          <p><strong>Data:</strong> <span id="detalhesData"></span></p>
+          <p><strong>Departamento: </strong><span id="detalhesDepartamento"></span></p>
+          <p><strong>Urgencia: </strong><span id="detalhesUrgencia"></span></p>
+          <p> <strong>Descrição:</strong> <span id="detalhesDescricao"></span> </p>
+          <p> <strong>Status:</strong> <span id="detalhesStatusContainer"></span> </p>
+          <button type="button" class="fechar-detalhes-button" onclick="fecharPopupDetalhes()">
+            Fechar
+          </button>
+          </form>
+        </div>
+      </div>
 </body>
 
 </html>
