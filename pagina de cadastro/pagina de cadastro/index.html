@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>registrar-se</title>
+</head>
+<body>
+    <div class="box">
+        <div class="imagem_box">
+            <img src="imagem/logo-transparent.png" alt="">
+        </div>
+        <div class="form_box">
+            <h2>criar conta</h2>
+            <p> ja é membro <a href="#">login</a></p>
+         
+            <form action="http://localhost:1880/api-form" method="post">
+                <div class="input_group">
+                    <label for="nome" >Digite seu nome</label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
+                </div>
+                <div class="input_group">
+                    <label for="email" >Digite seu email</label>
+                    <input type="email" name="email"id="email" placeholder="Digite seu email" required>
+                </div>
+                <div class="input_group">
+                    <label for="telefone">Digite seu telefone</label>
+                    <input type="tel" name="telefone" id="telefone" placeholder="Digite seu telefone" required>
+                </div>
+                <div class="input_group w50">
+                    <label for="senha">Digite sua senha</label>
+                    <input type="password"name="senha" id="senha" placeholder="Crie sua senha" required>
+                </div>
+                <div class="input_group w50">
+                    <label for="confirmesenha">Confirmar senha</label>
+                    <input type="password" id="confirmesenha" placeholder="Confirme sua senha" required>
+                </div>
+                
+                <div class="input_group">
+                    <button type="submit">Cadastrar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+    
+    
+</body>
+</html>

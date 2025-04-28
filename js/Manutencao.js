@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const criarSolicitacaoBotao = $(".criar-solicitacao");
-    const listaDeSolicitacoes = $(".listaSolicitacoes");
+    const listaSolicitacoes = $(".listaSolicitacoes");
     const formNovaSolicitacao = $("#formNovaSolicitacao");
     const popupDetalhesSolicitacao = $("#popupDetalhesSolicitacao");
     const detalhesNome = $("#detalhesNome");
@@ -10,7 +10,7 @@ $(document).ready(function () {
     const detalhesData = $("#detalhesData");
     const detalhesDescricao = $("#detalhesDescricao");
     const detalhesStatus = $("#detalhesStatus");
-    let contadorSolicitacoes = listaDeSolicitacoes.find(".listaSolicitacoes").length + 1;
+    let contadorSolicitacoes = listaSolicitacoes.find(".listaSolicitacoes").length + 1;
     
     buscarSolicitacoes();
 

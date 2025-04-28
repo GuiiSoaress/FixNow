@@ -71,7 +71,7 @@ header {
 }
 
 main {
-    width: 100vw;
+    width: 100%;
     height: 83.5vh;
     display: flex;
     align-items: center;
@@ -91,18 +91,29 @@ main {
         height: 90%;
         border-radius: 20px;
         padding: 20px;
+        box-sizing: border-box;
+        
+        
 
         .listaSolicitacoes{
             width: 100%;
             height: 100%;
+            
 
+            .solicitacao{
+                width: 100%;
+                height: 10%;
+                background-color: white;
+                display: flex;
+                margin: 10px 0px 10px 0px;
+                border-radius: 20px;
+                align-items: center;
+                padding: 0px 10px 0px 10px;
+                box-sizing: border-box;
+                justify-content: space-between;
+            }
         }
     }
 }
 
 
-.solicitacao{
-    width: 100%;
-    height: 20%;
-    background-color: white;
-}
