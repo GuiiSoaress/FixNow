@@ -256,7 +256,6 @@ section {
 
 .section-content_solicitacao{
     padding: 20px;
-
 }
 
 .section-content_solicitacao h3{
@@ -267,6 +266,7 @@ section {
     display: flex;
     gap: 20px;
     width: 100%;
+    overflow: auto;
 }
 
 .solicitacao-coluna {
@@ -274,6 +274,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    
 }
 
 .bloco-solicitacao {
@@ -284,6 +285,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    
 }
 
 .solicitacao-title {

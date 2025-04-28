@@ -60,6 +60,7 @@ $(document).ready(function () {
       },
       error: function (error) {
         console.error("Erro ao buscar as solicitações:", error);
+        listaDeSolicitacoes.append("<p>Falha na comunicação com o banco de dados.</p>");
       },
     });
   }

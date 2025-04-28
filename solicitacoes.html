@@ -25,6 +25,7 @@
         <li class="menu-item"><a href="#">Solicitações</a></li>
         <li class="menu-item">
           <a href="monitoramento.html">Monitoramento</a>
+          <a href="manutencao.html">manutencao</a>
         </li>
       </ul>
     </nav>
@@ -73,8 +74,8 @@
         <h3></h3>
       </div>
 
-      <a href="#" class="button-vermais">Ver mais</a>
-    </div>
+      <!-- <a href="#" class="button-vermais">Ver mais</a>
+    </div> -->
 
 
     </div>
@@ -115,10 +116,23 @@
           <label for="idMaquinaSolicitacao">ID da máquina:</label>
           <input type="number" id="idMaquinaSolicitacao" />
           <br>
+          <br>  
         </div>
 
         <label for="departamentoSolicitacao">Departamento:</label>
-        <input type="text" id="departamentoSolicitacao" required /><br />
+        <select id="departamentoSolicitacao" required>
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="Montagem">Montagem</option>
+          <option value="Usinagem">Usinagem</option>
+          <option value="Recebimento">Recebimento</option>
+          <option value="Almoxarifado">Almoxarifado</option>
+          <option value="Compras">Compras</option>
+          <option value="Controle da Qualidade">Controle da Qualidade</option>
+          <option value="Financeiro">Financeiro</option>
+        </select>
+
+        <br>
+        <br>
 
         <label for="dataSolicitacao">Data:</label>
         <input type="date" id="dataSolicitacao" required /><br />
