@@ -30,10 +30,10 @@ $(document).ready(function () {
 
                     const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
                     const novoCard = $("<div>", { class: "solicitacao" }).append(
-                        $("<h3>", { class: "solicitacao-title" }).text(`ID #${solicitacao.id_solicitacao}`),
-                        $("<p>").text(`Tipo: ${solicitacao.tipo}`),
-                        $("<p>").text(`Departamento: ${solicitacao.departamento}`),
-                        $("<p>").text(`Data: ${solicitacao.data}`),
+                        $("<h3>", { class: "solicitacao-title" }).text(`#${solicitacao.id_solicitacao}`),
+                        $("<p>").text(`${solicitacao.tipo}`),
+                        $("<p>").text(`${solicitacao.departamento}`),
+                        $("<p>").text(`${solicitacao.data}`),
                         $("<div>", {
                             class: "button-status-card",
                             id: `button-status-card_${statusId}`

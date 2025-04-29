@@ -93,11 +93,20 @@ main {
         padding: 20px;
         box-sizing: border-box;
         
-        
+        .titulos {
+            display: flex;  
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+        }
 
+        .titulos h3{
+            margin: 0;
+        }
         .listaSolicitacoes{
             width: 100%;
             height: 100%;
+            overflow-y: auto;
             
 
             .solicitacao{
