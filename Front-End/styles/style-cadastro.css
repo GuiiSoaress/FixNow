@@ -1,0 +1,78 @@
+body{
+    background-color: #101f4d;
+    display: flex;
+    font-family: "Raleway", sans-serif;
+    margin: 0;
+    overflow: hidden;
+}
+.logo{
+    display: flex;
+    width: 50vw;
+    height: 100vh;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.logo img{
+    width: 100%;
+    height: auto;
+}
+
+.login-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+}
+
+.login-content{
+    background-color:aliceblue;
+    width: 500px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+
+    .cadastro{
+        
+        .input_group{
+            margin: 10px;
+        }
+    }
+
+}
+
+button{
+   
+    background-color: rgb(26, 132, 224);
+    width: 300px;
+    padding: 5px;
+    border-radius: 7px;
+    border-color: aliceblue;
+    border-style: none;
+    margin: 1px 100px;
+    
+}
+
+.esqueci{
+    text-decoration: none;
+    color: black;
+}
+
+input{
+    color: rgb(175, 192, 192);
+    background-color: rgba(184, 194, 203, 0.708);
+     border-radius: 5px;
+     width: 100%;
+     height: 25px;
+     border-color:rgba(184, 194, 203, 0.708);
+     border: solid;
+}
+
+
+.cadastro{
+    text-decoration: none;
+    
+}
+
