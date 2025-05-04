@@ -14,10 +14,6 @@ $(document).ready(function () {
     
     buscarSolicitacoes();
 
-
-
-
-
     async function buscarSolicitacoes() {
         $.ajax({
             url: "http://127.0.0.1:1880/buscarsolicitacao",
@@ -27,7 +23,6 @@ $(document).ready(function () {
                 console.log("Dados das solicitações recebidos:", data);
                 listaSolicitacoes.empty();
                 $.each(data, function (index, solicitacao) {
-
                     const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
                     const novoCard = $("<div>", { class: "solicitacao" }).append(
                         $("<h3>", { class: "solicitacao-title" }).text(`#${solicitacao.id_solicitacao}`),
@@ -57,9 +52,36 @@ $(document).ready(function () {
             },
             error: function (error) {
                 console.error("Erro ao buscar as solicitações:", error);
-                listaDeSolicitacoes.append("<p>Falha na comunicação com o banco de dados.</p>");
+                listaSolicitacoes.append("<p>Falha na comunicação com o banco de dados.</p>");
             },
         });
     }
 
-}); // Fechamento correto do $(document).ready()
+    listaSolicitacoes.on("click", ".button-vermais", function () {
+        const nome = $(this).data("nome");
+        const tipo = $(this).data("tipo");
+        const data = $(this).data("data");
+        const departamento = $(this).data("departamento");
+        const urgencia = $(this).data("urgencia");
+        const descricao = $(this).data("descricao");
+        const status = $(this).data("status");
+        abrirPopupDetalhes(nome, tipo, departamento, urgencia, data, descricao, status);
+    });
+
+    // Agora DENTRO do document.ready:
+    window.abrirPopupDetalhes = function (nome, tipo, departamento, urgencia, data, descricao, status) {
+        detalhesNome.text(nome);
+        detalhesTipo.text(tipo);
+        detalhesDepartamento.text(departamento);
+        detalhesUrgencia.text(urgencia);
+        detalhesData.text(data);
+        detalhesDescricao.text(descricao);
+        $("#detalhesStatusContainer").text(status);
+
+        $("#popupDetalhesSolicitacao").css("display", "flex");
+    };
+
+    window.fecharPopupDetalhes = function () {
+        $("#popupDetalhesSolicitacao").css("display", "none");
+    };
+}); 
