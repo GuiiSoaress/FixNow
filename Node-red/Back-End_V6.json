@@ -1,0 +1,23 @@
+[
+    {
+        "id": "58d56ccefa6d5c2e",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "g": "d355474d35ee5e7c",
+        "name": "SalvarSolicitacao",
+        "func": "let nome = msg.payload.nome;\nlet email = msg.payload.email;\nlet senha = msg.payload.senha;\n\nmsg.topic = \n    \"INSERT INTO usuario (nome, email, senha) VALUES (? ,?, ?, ?)\";\nmsg.payload = [nome, email, senha];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 1160,
+        "wires": [
+            [
+                "022c6b1256aa33d4"
+            ]
+        ]
+    }
+]

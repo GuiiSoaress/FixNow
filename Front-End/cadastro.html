@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style-cadastro.css">
+    <script src="js/cadastro.js" defer></script>
+    <script src="js/Solicitacoes.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Registrar-se</title>
 </head>
 
@@ -24,10 +28,6 @@
                     <input type="email" name="email" id="email" placeholder="Digite seu email" required>
                 </div>
                 <div class="input_group">
-                    <label for="telefone">Digite seu telefone</label>
-                    <input type="tel" name="telefone" id="telefone" placeholder="Digite seu telefone" required>
-                </div>
-                <div class="input_group">
                     <label for="senha">Digite sua senha</label>
                     <input type="password" name="senha" id="senha" placeholder="Crie sua senha" required>
                 </div>
@@ -36,7 +36,7 @@
                     <input type="password" id="confirmesenha" placeholder="Confirme sua senha" required>
                 </div>
                 <div class="input_group">
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit" class="button-cadastrar">Cadastrar</button>
                 </div>
         </div>
         </form>
