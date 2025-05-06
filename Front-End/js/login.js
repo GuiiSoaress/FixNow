@@ -4,8 +4,8 @@ $(document).ready(function () {
 
     formlogin.on("submit", function (event) {
         event.preventDefault();
-        const email = $("#email").val();
-        const senha = $("#password").val();
+        const email = $(".userEmail").val();
+        const senha = $(".password").val();
 
         const objectLogin = {
           email: email,
@@ -15,7 +15,7 @@ $(document).ready(function () {
         console.log("Dados da nova solicitação (simulando envio):", objectLogin);
     
         $.ajax({
-          url: "http://127.0.0.1:1880/loin",
+          url: "http://127.0.0.1:1880/login",
           method: "POST",
           contentType: "application/json",
           data: JSON.stringify(objectLogin),
@@ -23,7 +23,7 @@ $(document).ready(function () {
             console.log("Dados enviados:", objectLogin)
             Swal.fire({
               title: "Sucesso!",
-              text: "Bem Vindo(a)!!",
+              text: "Bem Vindo (a)",
               icon: "success",
               confirmButtonText: "OK"
             }).then((result) => {
