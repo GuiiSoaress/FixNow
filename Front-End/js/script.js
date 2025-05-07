@@ -36,7 +36,7 @@ function verificarUsuario() {
     const pagina = window.location.pathname;
 
     const permissoes = {
-        'index.html': ['Colaborador', 'Administrador', 'Manutencao'],
+        'home.html': ['Colaborador', 'Administrador', 'Manutencao'],
         'solicitacoes.html': ['Colaborador', 'Administrador', 'Manutencao'],
         'monitoramento.html': ['Colaborador', 'Administrador', 'Manutencao'],
         'manutencao.html': ['Administrador', 'Manutencao']
@@ -61,7 +61,7 @@ function esconderMenu() {
 
 function logout() {
     localStorage.clear(); // ou localStorage.removeItem('usuario') se quiser apagar só um
-    window.location.href = 'login.html'; // ou a página inicial de login
+    window.location.href = '../index.html'; // ou a página inicial de login
 }
 
 $(document).ready(function () {
