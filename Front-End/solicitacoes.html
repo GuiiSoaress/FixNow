@@ -12,6 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
   <script src="js/Solicitacoes.js" defer></script>
+  <script src="js/script.js" defer></script>
   <title>FixNow - Solicitações</title>
 </head>
 
@@ -25,7 +26,8 @@
         <li class="menu-item"><a href="#">Solicitações</a></li>
         <li class="menu-item">
           <a href="monitoramento.html">Monitoramento</a>
-          <a href="manutencao.html">manutencao</a>
+          <a id="manutencao-button" href="manutencao.html">Manutencao</a>
+          <button onclick="logout()">logout</button>
         </li>
       </ul>
     </nav>

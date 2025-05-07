@@ -60,5 +60,5 @@ buttonCadastrar.on("click", () => {
       confirmButtonText: "OK"
     });
   }
-
+  
 })
