@@ -35,7 +35,7 @@ $(document).ready(function () {
             console.log(localStorage.getItem('usuario'));       // guihhsoaress@gmail.com
             console.log(localStorage.getItem('tipoUsuario')); 
             
-            window.location.href="index.html"
+            window.location.href="/Front-End/home.html"
           },
           error: function (error) {
             console.error("Erro ao fazer login:", error);
