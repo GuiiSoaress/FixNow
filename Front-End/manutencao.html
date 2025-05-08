@@ -1,54 +1,82 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="styles/style-manutencao.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/style-manutencao.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="js/manutencao.js" defer></script>
-  <title> </title>
+  <title>Solicitações</title>
 </head>
-
 <body>
   <header>
     <div class="header-logo">
-      <a href="/index.html"><img src="images/logo-transparente.png" alt="" /></a>
+      <a href="home.html"><img src="images/logo-transparente.png" alt="" /></a>
     </div>
     <nav>
       <ul class="menu-list">
         <li class="menu-item"><a href="solicitacoes.html">Solicitações</a></li>
         <li class="menu-item">
           <a href="monitoramento.html">Monitoramento</a>
+          <a id="manutencao-button" href="#">Manutencao</a>
+          <button onclick="logout()">logout</button>
         </li>
       </ul>
     </nav>
 
     <div class="user">
       <img src="images/user-solid.svg" alt="" />
-      <p>User</p>
+      <div class="nomeUsuario" id="nomeUsuariologin">Usuario</div>
     </div>
   </header>
 
-  <h1 class="main-title">Solicitacões</h1>
-
-
+  <h1 class="main-title">Solicitações</h1>
+  <br>
+  <br>
   <main>
-
     <div class="filtros-solicitacoes">
-      <button>Pendentes</button>
-      <button>Em Andamento</button>
-      <button>Concluido</button>
+      <button id="btn-pendentes" class="filtro-status active" onclick="buscarSolicitacoesEmAvaliacao()">Pendentes</button>
+      <button id="btn-andamento" class="filtro-status" onclick="buscarSolicitacoesEmAndamento()">Em Andamento</button>
+      <button id="btn-concluido" class="filtro-status" onclick="buscarSolicitacoesConcluido()">Concluído</button>
     </div>
-    <section class="box-solicitacoes">
-      <div class="listaSolicitacoes" id="listaSolicitacoes">
 
+    <section class="box-solicitacoes">
+      <div class="titulos">
+        <span>ID</span>
+        <span>Tipo</span>
+        <span>DEPARTAMENTO</span>
+        <span>DATA</span>
+        <span>FUNCIONÁRIO</span>
+        <span>STATUS</span>
+        <span>AÇÃO</span>
       </div>
+      <div class="listaSolicitacoes" id="listaSolicitacoes"></div>
     </section>
   </main>
 
+  <div id="popupDetalhesSolicitacao" class="popup-detalhes-overlay">
+    <div class="popup-detalhes-content">
+      <h2>Detalhes da Solicitação</h2>
+      <p><strong>Nome:</strong> <span id="detalhesNome"></span></p>
+      <p><strong>Tipo:</strong> <span id="detalhesTipo"></span></p>
+      <p><strong>Data:</strong> <span id="detalhesData"></span></p>
+      <p><strong>Departamento: </strong><span id="detalhesDepartamento"></span></p>
+      <p><strong>Urgencia: </strong><span id="detalhesUrgencia"></span></p>
+      <p> <strong>Descrição:</strong> <span id="detalhesDescricao"></span> </p>
+      <p> <strong>Status:</strong> <span id="detalhesStatusContainer"></span> </p>
 
+      <button type="button" class="fechar-detalhes-button" onclick="fecharPopupDetalhes()">
+        Fechar
+      </button>
+      </form>
+    </div>
+  </div>
+  
 </body>
-
 </html>

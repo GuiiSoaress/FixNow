@@ -31,9 +31,11 @@ $(document).ready(function () {
 
             localStorage.setItem('usuario', response[0].email);
             localStorage.setItem('tipoUsuario', response[0].tipo_usuario);
+            localStorage.setItem('nomeUsuario', response[0].nome);
             
-            console.log(localStorage.getItem('usuario'));       // guihhsoaress@gmail.com
-            console.log(localStorage.getItem('tipoUsuario')); 
+            console.log(localStorage.getItem('usuario'));      
+            console.log(localStorage.getItem('tipoUsuario'));
+            console.log(localStorage.getItem('nomeUsuario')); 
             
             window.location.href="/Front-End/home.html"
           },

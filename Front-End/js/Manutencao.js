@@ -1,87 +1,270 @@
 $(document).ready(function () {
-    const criarSolicitacaoBotao = $(".criar-solicitacao");
-    const listaSolicitacoes = $(".listaSolicitacoes");
-    const formNovaSolicitacao = $("#formNovaSolicitacao");
-    const popupDetalhesSolicitacao = $("#popupDetalhesSolicitacao");
-    const detalhesNome = $("#detalhesNome");
-    const detalhesTipo = $("#detalhesTipo");
-    const detalhesDepartamento = $("#detalhesDepartamento");
-    const detalhesUrgencia = $("#detalhesUrgencia");
-    const detalhesData = $("#detalhesData");
-    const detalhesDescricao = $("#detalhesDescricao");
-    const detalhesStatus = $("#detalhesStatus");
-    let contadorSolicitacoes = listaSolicitacoes.find(".listaSolicitacoes").length + 1;
-    
-    buscarSolicitacoes();
+  const listaSolicitacoes = $("#listaSolicitacoes");
+  const detalhesNome = $("#detalhesNome");
+  const detalhesTipo = $("#detalhesTipo");
+  const detalhesDepartamento = $("#detalhesDepartamento");
+  const detalhesUrgencia = $("#detalhesUrgencia");
+  const detalhesData = $("#detalhesData");
+  const detalhesDescricao = $("#detalhesDescricao");
+  const detalhesStatus = $("#detalhesStatus");
 
-    async function buscarSolicitacoes() {
-        $.ajax({
-            url: "http://127.0.0.1:1880/buscarsolicitacao",
-            method: "GET",
-            dataType: "json",
-            success: function (data) {
-                console.log("Dados das solicitações recebidos:", data);
-                listaSolicitacoes.empty();
-                $.each(data, function (index, solicitacao) {
-                    const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
-                    const novoCard = $("<div>", { class: "solicitacao" }).append(
-                        $("<h3>", { class: "solicitacao-title" }).text(`#${solicitacao.id_solicitacao}`),
-                        $("<p>").text(`${solicitacao.tipo}`),
-                        $("<p>").text(`${solicitacao.departamento}`),
-                        $("<p>").text(`${solicitacao.data}`),
-                        $("<div>", {
-                            class: "button-status-card",
-                            id: `button-status-card_${statusId}`
-                        }).append($("<h3>").text(solicitacao.status_solicitacao)),
-                        $("<a>", {
-                            href: "#",
-                            class: "button-vermais",
-                            "data-nome": solicitacao.nome,
-                            "data-tipo": solicitacao.tipo,
-                            "data-departamento": solicitacao.departamento,
-                            "data-urgencia": solicitacao.urgencia,
-                            "data-idmaquina": solicitacao.id_maquina,
-                            "data-data": solicitacao.data,
-                            "data-descricao": solicitacao.descricao,
-                            "data-status": solicitacao.status_solicitacao
-                        }).text("Ver mais")
-                    );
-                    listaSolicitacoes.append(novoCard);
-                    contadorSolicitacoes++;
-                });
-            },
-            error: function (error) {
-                console.error("Erro ao buscar as solicitações:", error);
-                listaSolicitacoes.append("<p>Falha na comunicação com o banco de dados.</p>");
-            },
+  $('.filtro-status').click(function () {
+    $('.filtro-status').removeClass('active'); // remove de todos
+    $(this).addClass('active'); // adiciona ao clicado
+  });
+
+  buscarSolicitacoes();
+  verificarUsuario();
+  esconderMenu();
+
+  document.getElementById("nomeUsuariologin").innerHTML = localStorage.getItem("nomeUsuario");
+
+  function buscarSolicitacoes() {
+    $.ajax({
+      url: "http://127.0.0.1:1880/buscarsolicitacaoeEmavaliacao",
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        listaSolicitacoes.empty();
+
+        $.each(data, function (index, solicitacao) {
+          const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
+          console.log(statusId);
+          const novoCard = $("<div>", { class: "solicitacao" }).append(
+            $("<span>").text(`#${solicitacao.id_solicitacao}`),
+            $("<span>").text(solicitacao.tipo),
+            $("<span>").text(solicitacao.departamento),
+            $("<span>").text(solicitacao.data),
+            $("<span>").text(solicitacao.nome),
+            $("<div>", {
+              class: "button-status-card",
+              id: `button-status-card_${statusId}`
+            }).text(solicitacao.status_solicitacao),
+            $("<a>", {
+              href: "#",
+              class: "button-vermais",
+              text: "Ver mais",
+              "data-nome": solicitacao.nome,
+              "data-tipo": solicitacao.tipo,
+              "data-departamento": solicitacao.departamento,
+              "data-urgencia": solicitacao.urgencia,
+              "data-idmaquina": solicitacao.id_maquina,
+              "data-data": solicitacao.data,
+              "data-descricao": solicitacao.descricao,
+              "data-status": solicitacao.status_solicitacao
+            })
+          );
+
+          listaSolicitacoes.append(novoCard);
         });
-    }
-
-    listaSolicitacoes.on("click", ".button-vermais", function () {
-        const nome = $(this).data("nome");
-        const tipo = $(this).data("tipo");
-        const data = $(this).data("data");
-        const departamento = $(this).data("departamento");
-        const urgencia = $(this).data("urgencia");
-        const descricao = $(this).data("descricao");
-        const status = $(this).data("status");
-        abrirPopupDetalhes(nome, tipo, departamento, urgencia, data, descricao, status);
+      },
+      error: function () {
+        listaSolicitacoes.html("<p>Erro ao buscar solicitações.</p>");
+      }
     });
+  }
 
-    // Agora DENTRO do document.ready:
-    window.abrirPopupDetalhes = function (nome, tipo, departamento, urgencia, data, descricao, status) {
-        detalhesNome.text(nome);
-        detalhesTipo.text(tipo);
-        detalhesDepartamento.text(departamento);
-        detalhesUrgencia.text(urgencia);
-        detalhesData.text(data);
-        detalhesDescricao.text(descricao);
-        $("#detalhesStatusContainer").text(status);
 
-        $("#popupDetalhesSolicitacao").css("display", "flex");
-    };
+  window.buscarSolicitacoesEmAvaliacao = function ()  {
+    $.ajax({
+      url: "http://127.0.0.1:1880/buscarsolicitacaoeEmavaliacao",
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        listaSolicitacoes.empty();
 
-    window.fecharPopupDetalhes = function () {
-        $("#popupDetalhesSolicitacao").css("display", "none");
-    };
-}); 
+        $.each(data, function (index, solicitacao) {
+          const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
+          console.log(statusId);
+          const novoCard = $("<div>", { class: "solicitacao" }).append(
+            $("<span>").text(`#${solicitacao.id_solicitacao}`),
+            $("<span>").text(solicitacao.tipo),
+            $("<span>").text(solicitacao.departamento),
+            $("<span>").text(solicitacao.data),
+            $("<span>").text(solicitacao.nome),
+            $("<div>", {
+              class: "button-status-card",
+              id: `button-status-card_${statusId}`
+            }).text(solicitacao.status_solicitacao),
+            $("<a>", {
+              href: "#",
+              class: "button-vermais",
+              text: "Ver mais",
+              "data-nome": solicitacao.nome,
+              "data-tipo": solicitacao.tipo,
+              "data-departamento": solicitacao.departamento,
+              "data-urgencia": solicitacao.urgencia,
+              "data-idmaquina": solicitacao.id_maquina,
+              "data-data": solicitacao.data,
+              "data-descricao": solicitacao.descricao,
+              "data-status": solicitacao.status_solicitacao
+            })
+          );
+
+          listaSolicitacoes.append(novoCard);
+        });
+      },
+      error: function () {
+        listaSolicitacoes.html("<p>Erro ao buscar solicitações.</p>");
+      }
+    });
+  }
+
+  window.buscarSolicitacoesEmAndamento = function ()  {
+    $.ajax({
+      url: "http://127.0.0.1:1880/buscarsolicitacaoeEmandamento",
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        listaSolicitacoes.empty();
+
+        $.each(data, function (index, solicitacao) {
+          const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
+          console.log(statusId);
+          const novoCard = $("<div>", { class: "solicitacao" }).append(
+            $("<span>").text(`#${solicitacao.id_solicitacao}`),
+            $("<span>").text(solicitacao.tipo),
+            $("<span>").text(solicitacao.departamento),
+            $("<span>").text(solicitacao.data),
+            $("<span>").text(solicitacao.nome),
+            $("<div>", {
+              class: "button-status-card",
+              id: `button-status-card_${statusId}`
+            }).text(solicitacao.status_solicitacao),
+            $("<a>", {
+              href: "#",
+              class: "button-vermais",
+              text: "Ver mais",
+              "data-nome": solicitacao.nome,
+              "data-tipo": solicitacao.tipo,
+              "data-departamento": solicitacao.departamento,
+              "data-urgencia": solicitacao.urgencia,
+              "data-idmaquina": solicitacao.id_maquina,
+              "data-data": solicitacao.data,
+              "data-descricao": solicitacao.descricao,
+              "data-status": solicitacao.status_solicitacao
+            })
+          );
+
+          listaSolicitacoes.append(novoCard);
+        });
+      },
+      error: function () {
+        listaSolicitacoes.html("<p>Erro ao buscar solicitações.</p>");
+      }
+    });
+  }
+
+  window.buscarSolicitacoesConcluido = function ()  {
+    $.ajax({
+      url: "http://127.0.0.1:1880/buscarsolicitacaoConcluido",
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        listaSolicitacoes.empty();
+
+        $.each(data, function (index, solicitacao) {
+          const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
+          console.log(statusId);
+          const novoCard = $("<div>", { class: "solicitacao" }).append(
+            $("<span>").text(`#${solicitacao.id_solicitacao}`),
+            $("<span>").text(solicitacao.tipo),
+            $("<span>").text(solicitacao.departamento),
+            $("<span>").text(solicitacao.data),
+            $("<span>").text(solicitacao.nome),
+            $("<div>", {
+              class: "button-status-card",
+              id: `button-status-card_${statusId}`
+            }).text(solicitacao.status_solicitacao),
+            $("<a>", {
+              href: "#",
+              class: "button-vermais",
+              text: "Ver mais",
+              "data-nome": solicitacao.nome,
+              "data-tipo": solicitacao.tipo,
+              "data-departamento": solicitacao.departamento,
+              "data-urgencia": solicitacao.urgencia,
+              "data-idmaquina": solicitacao.id_maquina,
+              "data-data": solicitacao.data,
+              "data-descricao": solicitacao.descricao,
+              "data-status": solicitacao.status_solicitacao
+            })
+          );
+
+          listaSolicitacoes.append(novoCard);
+        });
+      },
+      error: function () {
+        listaSolicitacoes.html("<p>Erro ao buscar solicitações.</p>");
+      }
+    });
+  }
+
+
+
+  listaSolicitacoes.on("click", ".button-vermais", function () {
+    const nome = $(this).data("nome");
+    const tipo = $(this).data("tipo");
+    const data = $(this).data("data");
+    const departamento = $(this).data("departamento");
+    const urgencia = $(this).data("urgencia");
+    const descricao = $(this).data("descricao");
+    const status = $(this).data("status");
+    abrirPopupDetalhes(nome, tipo, departamento, urgencia, data, descricao, status);
+  });
+
+
+  window.abrirPopupDetalhes = function (nome, tipo, departamento, urgencia, data, descricao, status) {
+    detalhesNome.text(nome);
+    detalhesTipo.text(tipo);
+    detalhesDepartamento.text(departamento);
+    detalhesUrgencia.text(urgencia);
+    detalhesData.text(data);
+    detalhesDescricao.text(descricao);
+    $("#detalhesStatusContainer").text(status);
+
+    $("#popupDetalhesSolicitacao").css("display", "flex");
+};
+
+window.fecharPopupDetalhes = function () {
+    $("#popupDetalhesSolicitacao").css("display", "none");
+};
+
+});
+
+
+function verificarUsuario() {
+
+  const tipo = localStorage.getItem('tipoUsuario');
+
+  const pagina = window.location.pathname;
+
+  const permissoes = {
+      'home.html': ['Colaborador', 'Administrador', 'Manutencao'],
+      'solicitacoes.html': ['Colaborador', 'Administrador', 'Manutencao'],
+      'monitoramento.html': ['Colaborador', 'Administrador', 'Manutencao'],
+      'manutencao.html': ['Administrador', 'Manutencao']
+  };
+
+  const nomePagina = pagina.split('/').pop();
+
+  if (!permissoes[nomePagina]?.includes(tipo)) {
+      alert('Acesso negado');
+      window.location.href = 'home.html'; // ou página de erro
+  }
+}
+
+function esconderMenu() {
+  const tipo = localStorage.getItem('tipoUsuario');
+
+  if (tipo == 'Colaborador') {
+      document.getElementById('manutencao-button').style.display = 'none';
+  }
+
+}
+
+function logout() {
+  localStorage.clear(); // ou localStorage.removeItem('usuario') se quiser apagar só um
+  window.location.href = '../index.html'; // ou a página inicial de login
+}
+

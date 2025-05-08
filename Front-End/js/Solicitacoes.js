@@ -10,6 +10,7 @@ $(document).ready(function () {
   const detalhesData = $("#detalhesData");
   const detalhesDescricao = $("#detalhesDescricao");
   const detalhesStatus = $("#detalhesStatus");
+  const nomeUsuario = $("#nomeUsuario");
   let contadorSolicitacoes = listaDeSolicitacoes.find(".solicitacao").length + 1;
 
   criarSolicitacaoBotao.on("click", function () {
@@ -20,6 +21,8 @@ $(document).ready(function () {
   });
 
   buscarSolicitacoes();
+  console.log("nome:" + localStorage.getItem("nomeUsuario"))
+  document.getElementById("nomeUsuariologin").innerHTML = localStorage.getItem("nomeUsuario");
 
   async function buscarSolicitacoes() {
     $.ajax({
