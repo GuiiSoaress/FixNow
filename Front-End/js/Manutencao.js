@@ -6,7 +6,9 @@ $(document).ready(function () {
   const detalhesUrgencia = $("#detalhesUrgencia");
   const detalhesData = $("#detalhesData");
   const detalhesDescricao = $("#detalhesDescricao");
+  const detalhesProfissional = $("#detalhesProfissional");
   const detalhesStatus = $("#detalhesStatus");
+
 
   $('.filtro-status').click(function () {
     $('.filtro-status').removeClass('active'); // remove de todos
@@ -26,7 +28,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (data) {
         listaSolicitacoes.empty();
-
+        console.log(data);
         $.each(data, function (index, solicitacao) {
           const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
           console.log(statusId);
@@ -51,9 +53,12 @@ $(document).ready(function () {
               "data-idmaquina": solicitacao.id_maquina,
               "data-data": solicitacao.data,
               "data-descricao": solicitacao.descricao,
-              "data-status": solicitacao.status_solicitacao
+              "data-status": solicitacao.status_solicitacao,
+              "data-idsolicitacao": solicitacao.id_solicitacao,
+              "data-responsavel": solicitacao.nome_responsavel
             })
           );
+          
 
           listaSolicitacoes.append(novoCard);
         });
@@ -65,7 +70,7 @@ $(document).ready(function () {
   }
 
 
-  window.buscarSolicitacoesEmAvaliacao = function ()  {
+  window.buscarSolicitacoesEmAvaliacao = function () {
     $.ajax({
       url: "http://127.0.0.1:1880/buscarsolicitacaoeEmavaliacao",
       method: "GET",
@@ -97,7 +102,8 @@ $(document).ready(function () {
               "data-idmaquina": solicitacao.id_maquina,
               "data-data": solicitacao.data,
               "data-descricao": solicitacao.descricao,
-              "data-status": solicitacao.status_solicitacao
+              "data-status": solicitacao.status_solicitacao,
+              "data-idsolicitacao": solicitacao.id_solicitacao
             })
           );
 
@@ -110,14 +116,14 @@ $(document).ready(function () {
     });
   }
 
-  window.buscarSolicitacoesEmAndamento = function ()  {
+  window.buscarSolicitacoesEmAndamento = function () {
     $.ajax({
       url: "http://127.0.0.1:1880/buscarsolicitacaoeEmandamento",
       method: "GET",
       dataType: "json",
       success: function (data) {
         listaSolicitacoes.empty();
-
+        console.log(data);
         $.each(data, function (index, solicitacao) {
           const statusId = solicitacao.status_solicitacao.replace(/\s/g, "_");
           console.log(statusId);
@@ -142,10 +148,12 @@ $(document).ready(function () {
               "data-idmaquina": solicitacao.id_maquina,
               "data-data": solicitacao.data,
               "data-descricao": solicitacao.descricao,
-              "data-status": solicitacao.status_solicitacao
+              "data-status": solicitacao.status_solicitacao,
+              "data-idsolicitacao": solicitacao.id_solicitacao,
+              "data-responsavel": solicitacao.nome_responsavel
             })
           );
-
+          
           listaSolicitacoes.append(novoCard);
         });
       },
@@ -155,7 +163,7 @@ $(document).ready(function () {
     });
   }
 
-  window.buscarSolicitacoesConcluido = function ()  {
+  window.buscarSolicitacoesConcluido = function () {
     $.ajax({
       url: "http://127.0.0.1:1880/buscarsolicitacaoConcluido",
       method: "GET",
@@ -187,7 +195,9 @@ $(document).ready(function () {
               "data-idmaquina": solicitacao.id_maquina,
               "data-data": solicitacao.data,
               "data-descricao": solicitacao.descricao,
-              "data-status": solicitacao.status_solicitacao
+              "data-status": solicitacao.status_solicitacao,
+              "data-idsolicitacao": solicitacao.id_solicitacao,
+              "data-responsavel": solicitacao.nome_responsavel
             })
           );
 
@@ -200,7 +210,65 @@ $(document).ready(function () {
     });
   }
 
+  window.marcarEmAndamento = function ()  {
+  const checkbox = document.getElementById('chkProfissional');
+  
+  console.log("Entrou");
 
+    if(checkbox.checked == true && idSolicitacaoSelecionada){
+      const novaSolicitacao = {
+        nome: localStorage.getItem("nomeUsuario"),
+        id_solicitacao: idSolicitacaoSelecionada,
+        statusAtual: statusAtual,
+        mudar: true
+      };
+
+      console.log(novaSolicitacao);
+
+    $.ajax({
+      url: "http://127.0.0.1:1880/marcarEmAndamento",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(novaSolicitacao),
+      success: function () {
+        alert("Solicitação marcada como Em Andamento!");
+        fecharPopupDetalhes();
+        buscarSolicitacoes();
+      },
+      error: function () {
+        alert("Erro ao marcar como Em Andamento.");
+      }
+    });
+    }
+  
+    if(checkbox.checked == false && idSolicitacaoSelecionada){
+      const novaSolicitacao = {
+        nome: "",
+        id_solicitacao: idSolicitacaoSelecionada,
+        statusAtual: statusAtual,
+        mudar: false
+      };  
+
+      console.log(novaSolicitacao);
+
+    $.ajax({
+      url: "http://127.0.0.1:1880/marcarEmAndamento",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(novaSolicitacao),
+      success: function () {
+        alert("Solicitação marcada como Em Avaliação!");
+        fecharPopupDetalhes();
+        buscarSolicitacoesEmAndamento();
+      },
+      error: function () {
+        alert("Erro ao marcar como Em Andamento.");
+      }
+    });
+    }
+    
+
+}
 
   listaSolicitacoes.on("click", ".button-vermais", function () {
     const nome = $(this).data("nome");
@@ -210,11 +278,15 @@ $(document).ready(function () {
     const urgencia = $(this).data("urgencia");
     const descricao = $(this).data("descricao");
     const status = $(this).data("status");
-    abrirPopupDetalhes(nome, tipo, departamento, urgencia, data, descricao, status);
+    const profissional = $(this).data("responsavel");
+    const id = $(this).data("idsolicitacao");
+    abrirPopupDetalhes(nome, tipo, departamento, urgencia, data, descricao, status, id, profissional);
   });
 
-
-  window.abrirPopupDetalhes = function (nome, tipo, departamento, urgencia, data, descricao, status) {
+  let idSolicitacaoSelecionada = null;
+  let statusAtual = null;
+  window.abrirPopupDetalhes = function (nome, tipo, departamento, urgencia, data, descricao, status, id, profissional) {
+    const checkbox = document.getElementById('chkProfissional');
     detalhesNome.text(nome);
     detalhesTipo.text(tipo);
     detalhesDepartamento.text(departamento);
@@ -222,13 +294,23 @@ $(document).ready(function () {
     detalhesData.text(data);
     detalhesDescricao.text(descricao);
     $("#detalhesStatusContainer").text(status);
-
+    statusAtual = status;
+    idSolicitacaoSelecionada = id;
+    if(status == 'Em andamento'){
+      checkbox.checked = true;
+      detalhesProfissional.text(profissional);
+    }
+    if(status == 'Em avaliacao'){
+      detalhesProfissional.text("");
+    }
+  
     $("#popupDetalhesSolicitacao").css("display", "flex");
-};
+  };
 
-window.fecharPopupDetalhes = function () {
+  window.fecharPopupDetalhes = function () {
     $("#popupDetalhesSolicitacao").css("display", "none");
-};
+  };
+
 
 });
 
@@ -240,17 +322,17 @@ function verificarUsuario() {
   const pagina = window.location.pathname;
 
   const permissoes = {
-      'home.html': ['Colaborador', 'Administrador', 'Manutencao'],
-      'solicitacoes.html': ['Colaborador', 'Administrador', 'Manutencao'],
-      'monitoramento.html': ['Colaborador', 'Administrador', 'Manutencao'],
-      'manutencao.html': ['Administrador', 'Manutencao']
+    'home.html': ['Colaborador', 'Administrador', 'Manutencao'],
+    'solicitacoes.html': ['Colaborador', 'Administrador', 'Manutencao'],
+    'monitoramento.html': ['Colaborador', 'Administrador', 'Manutencao'],
+    'manutencao.html': ['Administrador', 'Manutencao']
   };
 
   const nomePagina = pagina.split('/').pop();
 
   if (!permissoes[nomePagina]?.includes(tipo)) {
-      alert('Acesso negado');
-      window.location.href = 'home.html'; // ou página de erro
+    alert('Acesso negado');
+    window.location.href = 'home.html'; // ou página de erro
   }
 }
 
@@ -258,7 +340,7 @@ function esconderMenu() {
   const tipo = localStorage.getItem('tipoUsuario');
 
   if (tipo == 'Colaborador') {
-      document.getElementById('manutencao-button').style.display = 'none';
+    document.getElementById('manutencao-button').style.display = 'none';
   }
 
 }

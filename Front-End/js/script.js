@@ -67,4 +67,5 @@ function logout() {
 $(document).ready(function () {
     verificarUsuario();
     esconderMenu();
+    document.getElementById("nomeUsuariologin").innerHTML = localStorage.getItem("nomeUsuario");
 });
