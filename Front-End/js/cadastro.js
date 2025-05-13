@@ -60,5 +60,7 @@ buttonCadastrar.on("click", () => {
       confirmButtonText: "OK"
     });
   }
+
+  window.location.href = "/index.html";
   
 })
