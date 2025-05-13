@@ -232,7 +232,12 @@ $(document).ready(function () {
       contentType: "application/json",
       data: JSON.stringify(novaSolicitacao),
       success: function () {
-        alert("Solicitação marcada como Em Andamento!");
+        Swal.fire({
+          title: "Sucesso!",
+          text: "Solicitação marcada como Em Andamento!",
+          icon: "success",
+          confirmButtonText: "OK"
+        })
         fecharPopupDetalhes();
         buscarSolicitacoes();
         window.location.reload();
