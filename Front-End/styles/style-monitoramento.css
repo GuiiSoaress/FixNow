@@ -5,16 +5,15 @@ body {
     font-family: "Raleway", sans-serif;
 }
 
-
 /* header */
 header {
     display: flex;
-
     align-items: center;
-
     width: 100%;
     height: 70px;
     background-color: #14244C;
+    flex-wrap: wrap;
+    padding: 0 10px;
 }
 
 .header-logo img {
@@ -25,7 +24,6 @@ header {
 .user img {
     width: 40px;
     height: 40px;
-
     padding-right: 10px;
 }
 
@@ -33,23 +31,28 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin: 0px 10px 0px 10px;
+    margin: 0 10px;
 }
 
 nav {
     display: flex;
+    flex: 1;
+    justify-content: center;
 }
 
 .menu-list {
     display: flex;
     list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    margin: 0 10px;
 }
 
 .menu-item a {
     text-decoration: none;
     color: white;
-
     padding: 10px;
     font-size: 20px;
     font-weight: 500;
@@ -60,40 +63,61 @@ nav {
     margin-left: auto;
     margin-right: 30px;
     align-items: center;
-
-
     font-size: 20px;
     font-weight: 500;
     color: white;
 }
 
+/* Responsividade para dispositivos pequenos */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0px 15px 0px;
+    }
 
+    .menu-list {
+        flex-direction: column;
+        align-items: center;
+    }
 
+    .menu-item {
+        margin: 5px 0;
+    }
 
-/* main com conteudo */
+    .user {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
+/* main com conteúdo */
 main {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    padding: 20px;
 }
 
 .main-title {
-    margin-left: 30px;
+    padding-top: 20px;
+    margin-left: 25px;
+    width: 100%;
+    text-align: center;
 }
 
-/* blocos section com as maquinas */
+/* blocos section com as máquinas */
 section {
-    width: 50%;
-    height: 500px;
+    width: 48%;
+    height: auto;
     background-color: #cccbcb;
     border-radius: 20px;
-    margin: 30px;
-
+    margin: 20px 0;
 }
 
 .section-content {
-    margin: 10px 20px 10px 20px;
+    margin: 10px 20px;
 }
-
 
 /* Estilo aprimorado para as máquinas */
 .machine {
@@ -101,7 +125,7 @@ section {
     border-radius: 12px;
     padding: 16px;
     margin-bottom: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -185,83 +209,23 @@ section {
 
 .machine:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 
 .high-temp {
     color: #e74c3c;
     font-weight: 700;
 }
 
-/* bloco das maquinas */
- /* .machine {
-    background-color: white;
-    width: 100%;
-    height: 40px;
-    border-radius: 10px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0px 10px 0px;
-    padding: 10px;
-}
-
-.blocks {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-}
-
-.info-bloc {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #cccbcb;
-    width: 70px;
-    height: 30px;
-    border-radius: 15px;
-    margin: 0px 5px 0px 5px;
-    padding: 0px 5px 0px 5px;
-}   
-
-
-.identificador {
-    font-weight: bold;
-    color: #14244C;
-}
-
-.nome-maquina {
-    margin: 5px 0;
-}
-
-
-
-
-.machine p {
-    padding: 10px;
-    font-weight: 700;
-}
-
-.temperatura {
-    font-family: "Raleway", sans-serif;
-    font-weight: 500;
-} */
-
-
-
 /* section alertas */
-
-.section-content_solicitacao{
+.section-content_solicitacao {
     padding: 20px;
 }
 
-.section-content_solicitacao h3{
-   margin: 0px 0px 10px 0px;
-
+.section-content_solicitacao h3 {
+    margin: 0px 0px 10px 0px;
 }
+
 .solicitacoes-grid {
     display: flex;
     gap: 20px;
@@ -274,18 +238,16 @@ section {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    
 }
 
 .bloco-solicitacao {
     background-color: white;
     border-radius: 12px;
     padding: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 12px;
-    
 }
 
 .solicitacao-title {
@@ -340,8 +302,6 @@ section {
     padding: 5px 10px;
 }
 
-
-
 .popup-detalhes-overlay {
     display: none; /* Inicialmente escondido */
     position: fixed;
@@ -361,6 +321,7 @@ section {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     width: 400px;
+    max-width: 90%;
 }
 
 .popup-detalhes-content h2 {
@@ -389,18 +350,38 @@ section {
     margin: 15px auto 0;
 }
 
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    section {
+        width: 100%;
+        margin: 15px 0;
+        height: auto;
+    }
 
-#button-status-card_Em_avaliacao,
-#button-status-detalhes_Em_avaliacao {
-    background-color: #f77825;
-}
+    .machine {
+        padding: 12px;
+    }
 
-#button-status-card_Em_andamento,
-#button-status-detalhes_Em_andamento {
-    background-color: #D7B600;
-}
+    .main-title {
+        margin: 0;
+        text-align: center;
+    }
 
-#button-status-card_Concluido,
-#button-status-detalhes_Concluido{
-    background-color: #67B588;
+    .popup-detalhes-content {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .section-content_solicitacao h3 {
+        font-size: 18px;
+    }
+
+    .bloco-solicitacao {
+        padding: 12px;
+    }
+
+    .button-vermais {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
 }

@@ -8,6 +8,7 @@ $(document).ready(function () {
   const detalhesDescricao = $("#detalhesDescricao");
   const detalhesProfissional = $("#detalhesProfissional");
   const detalhesStatus = $("#detalhesStatus");
+  const checkbox = document.getElementById('chkProfissional');
 
 
   $('.filtro-status').click(function () {
@@ -211,7 +212,7 @@ $(document).ready(function () {
   }
 
   window.marcarEmAndamento = function ()  {
-  const checkbox = document.getElementById('chkProfissional');
+ 
   
   console.log("Entrou");
 
@@ -231,9 +232,15 @@ $(document).ready(function () {
       contentType: "application/json",
       data: JSON.stringify(novaSolicitacao),
       success: function () {
-        alert("Solicitação marcada como Em Andamento!");
+        Swal.fire({
+          title: "Sucesso!",
+          text: "Solicitação marcada como Em Andamento!",
+          icon: "success",
+          confirmButtonText: "OK"
+        })
         fecharPopupDetalhes();
         buscarSolicitacoes();
+        window.location.reload();
       },
       error: function () {
         alert("Erro ao marcar como Em Andamento.");
@@ -260,6 +267,7 @@ $(document).ready(function () {
         alert("Solicitação marcada como Em Avaliação!");
         fecharPopupDetalhes();
         buscarSolicitacoesEmAndamento();
+        
       },
       error: function () {
         alert("Erro ao marcar como Em Andamento.");
@@ -301,6 +309,7 @@ $(document).ready(function () {
       detalhesProfissional.text(profissional);
     }
     if(status == 'Em avaliacao'){
+      checkbox.checked = false;
       detalhesProfissional.text("");
     }
   
