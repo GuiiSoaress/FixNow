@@ -54,7 +54,7 @@ O **FixNow** é um sistema web simples e funcional, que organiza e digitaliza o 
   - Número de protocolo único
   - Status em tempo real: "Em avaliação", "Em andamento", "Concluído"
  
-  ![Sessão de detalhes da Solicitacão](./Assets/print-detalhes.png)
+  ![Sessão de detalhes da Solicitacão](./Assets/print-detahes.png)
 
 - **Pagina de manutenção**
   - Pagina onde os funcionarios do departamento de manutenção podem selecionar as solicitações
