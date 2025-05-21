@@ -2,7 +2,7 @@
 
 ## 📘 Projeto Integrador – 1º Termo | Graduação em Análise e Desenvolvimento de Sistemas
 
-Este projeto foi desenvolvido como parte do Projeto Integrador do 1º termo do curso de Análise e Desenvolvimento de Sistemas. A proposta surgiu a partir de uma demanda real da indústria publicada no **SAGA SENAI D de Inovação**, disponível neste link:
+Este projeto foi desenvolvido como parte do Projeto Integrador do 1º termo do curso de Análise e Desenvolvimento de Sistemas. A proposta surgiu a partir de uma demanda real da indústria publicada no **SAGA SENAI de Inovação**, disponível neste link:
 
 🔗 [Falhas no Processo de Solicitações: Como otimizar a Gestão de Manutenção e reparos na Empresa](https://plataforma.gpinovacao.senai.br/plataforma/demandas-da-industria/interna/11211)
 
@@ -45,24 +45,28 @@ O **FixNow** é um sistema web simples e funcional, que organiza e digitaliza o 
   - Localização do problema
   - Descrição detalhada
   - Prioridade (baixa, média, alta)
-  - Anexo de fotos ou documentos
+
+    ![Tela de solicitações](./assets/print-solicitacao.png)
+
+    ![Sessão de Criar Solicitacão](./assets/print-criar.png)
 
 - **Rastreamento de solicitações**
   - Número de protocolo único
-  - Status em tempo real: "Aguardando avaliação", "Em andamento", "Concluído"
-  - Histórico completo da solicitação
+  - Status em tempo real: "Em avaliação", "Em andamento", "Concluído"
+ 
+  ![Sessão de detalhes da Solicitacão](./assets/print-detalhes.png)
 
-- **Gestão e Prioridade**
-  - Priorização por urgência
-  - Atribuição automática a técnicos ou equipes responsáveis
-  - Prazos definidos para atendimento
+- **Pagina de manutenção**
+  - Pagina onde os funcionarios do departamento de manutenção podem selecionar as solicitações
+  - Alteração do Status e profissional Responsavel
 
-- **Painel de métricas**
-  - Tempo médio de resolução
-  - Número de solicitações por tipo
-  - Taxa de cumprimento de prazos
-  - Relatórios periódicos
+   ![Tela de Manutenção](./assets/print-manutencao.png)
 
+  ![Tela de detalhes da Manutenção](./assets/print-detalhes-manutencao.png)
+  
+- **Exportação de dados**
+  - Possibilidade de exportar as solicitações em formato **CSV** para análise externa
+  
 ---
 
 ## 🤖 Integração com Tecnologia da Automação
@@ -73,10 +77,12 @@ O projeto prevê uma integração com sensores de **monitoramento de máquinas i
 
 ## 🛠️ Tecnologias Utilizadas
 
-- HTML, CSS e JavaScript
+- HTML, CSS, JavaScript e MySQL
+- Python para Análise de Dados
 - jQuery
 - JSON para armazenamento simulado
-- (Futuramente) Integração com sensores e banco de dados
+- Integração com sensores de temperatura (DHT11) atráves da plataforma Arduino
+- Integração com o banco de dados Utilizando o NODE-RED
 
 ---
 
@@ -84,4 +90,17 @@ O projeto prevê uma integração com sensores de **monitoramento de máquinas i
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/fixnow.git
+   https://github.com/GuiiSoaress/FixNow
+2. Importe para o seu NODE-RED a versão mais recente do Back-End Na Pasta Back-End
+
+3. Importe o banco de dados nas Pasta BancoDeDados/Atual(comDados)
+
+4. Utilize os Logins ou crie uma conta: 
+        admin@gmail.com
+        Senha: admin
+
+## ⚠️ Aviso
+
+🚧 Este site ainda está em desenvolvimento. Algumas funcionalidades podem estar incompletas ou passar por alterações.
+
+
