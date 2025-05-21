@@ -46,23 +46,23 @@ O **FixNow** é um sistema web simples e funcional, que organiza e digitaliza o 
   - Descrição detalhada
   - Prioridade (baixa, média, alta)
 
-    ![Tela de solicitações](./assets/print-solicitacao.png)
+    ![Tela de solicitações](./Assets/print-solicitacao.png)
 
-    ![Sessão de Criar Solicitacão](./assets/print-criar.png)
+    ![Sessão de Criar Solicitacão](./Assets/print-criar.png)
 
 - **Rastreamento de solicitações**
   - Número de protocolo único
   - Status em tempo real: "Em avaliação", "Em andamento", "Concluído"
  
-  ![Sessão de detalhes da Solicitacão](./assets/print-detalhes.png)
+  ![Sessão de detalhes da Solicitacão](./Assets/print-detalhes.png)
 
 - **Pagina de manutenção**
   - Pagina onde os funcionarios do departamento de manutenção podem selecionar as solicitações
   - Alteração do Status e profissional Responsavel
 
-   ![Tela de Manutenção](./assets/print-manutencao.png)
+   ![Tela de Manutenção](./Assets/print-manutencao.png)
 
-  ![Tela de detalhes da Manutenção](./assets/print-detalhes-manutencao.png)
+  ![Tela de detalhes da Manutenção](./Assets/print-detalhes-manutencao.png)
   
 - **Exportação de dados**
   - Possibilidade de exportar as solicitações em formato **CSV** para análise externa
