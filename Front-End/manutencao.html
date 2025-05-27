@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -73,14 +71,20 @@
       <p> <strong>Descrição:</strong> <span id="detalhesDescricao"></span> </p>
       <p> <strong>Status:</strong> <span id="detalhesStatusContainer"></span> </p>
       <p> <strong>Profissional:</strong> <span id="detalhesProfissional"></span> </p>
-      <p> <strong>Marcar como Em Andamento:</strong> <input id="chkProfissional"  onchange="marcarEmAndamento()" type="checkbox"> </p>
+      <p>
+        <label for="chkProfissional"><strong>Marcar como Em Andamento:</strong></label>
+        <input id="chkProfissional" onchange="handleStatusChange()" type="checkbox">
+      </p>
+      <p id="concluidoCheckboxContainer" style="display: none;">
+        <label for="chkConcluido"><strong>Marcar como Concluído:</strong></label>
+        <input id="chkConcluido" onchange="marcarComoConcluido()" type="checkbox">
+      </p>
 
       <button type="button" class="fechar-detalhes-button" onclick="fecharPopupDetalhes()">
         Fechar
       </button>
-      </form>
     </div>
   </div>
-  
+
 </body>
 </html>
