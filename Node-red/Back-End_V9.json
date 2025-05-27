@@ -1,0 +1,22 @@
+[
+    {
+        "id": "c0d1e2f.c0d1e2",
+        "type": "function",
+        "z": "c7ac44f868b6d0a5",
+        "name": "Atualizar Status Solicitação",
+        "func": "const id_solicitacao = msg.payload.id_solicitacao;\nconst novoStatus = msg.payload.status_solicitacao;\nconst nomeResponsavel = msg.payload.nome_responsavel || null;\n\nmsg.topic = \"UPDATE solicitacao SET status_solicitacao = ?, nome_responsavel = ? WHERE id_solicitacao = ?\";\nmsg.payload = [novoStatus, nomeResponsavel, id_solicitacao];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 1540,
+        "wires": [
+            [
+                "3c84f7a0c336f9ba"
+            ]
+        ]
+    }
+]
