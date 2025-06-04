@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function logout() {
     alert('Você foi desconectado!'); 
     localStorage.clear(); 
-    window.location.href = 'index.html'; 
+    window.location.href = '../index.html'; 
 }
 
 function verificarUsuario() {
