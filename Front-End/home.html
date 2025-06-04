@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    rel="stylesheet">
     <link rel="stylesheet" href="styles/style-home.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujtnazU3z9/4qL/r83Kz6z7N5Jz1D2vXp7nO6rF1E6z2O9rD2i2pP3h1pQ8S4/809qS5dY12PzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/script.js" defer></script>
     <title>Home - FixNow</title>
@@ -18,72 +19,44 @@
     <header>
         <div class="header-logo">
             <a href="home.html"><img src="images/logo-transparente.png" alt="" /></a>
-          </div>
-          <nav>
+        </div>
+        <nav>
             <ul class="menu-list">
-              <li class="menu-item"><a href="solicitacoes.html">Solicitações</a></li>
-              <li class="menu-item">
-                <a href="monitoramento.html">Monitoramento</a>
-                <a id="manutencao-button" href="manutencao.html">Manutencao</a>
-                <button onclick="logout()">logout</button>
-              </li>
+                <li class="menu-item"><a href="solicitacoes.html">Solicitações</a></li>
+                <li class="menu-item">
+                    <a href="monitoramento.html">Monitoramento</a>
+                    <a id="manutencao-button" href="manutencao.html">Manutenção</a>
+                </li>
             </ul>
-          </nav>
-
-        <div class="user">
+        </nav>
+        <div class="user" id="userProfile">
             <img src="images/user-solid.svg" alt="">
-            <div class="nomeUsuario" id="nomeUsuariologin">Usuario</div>
+            <div class="nomeUsuario" id="nomeUsuariologin">Admin</div>
+            <div class="logout-popup" id="logoutPopup">
+                <button onclick="logout()">Logout</button>
+            </div>
         </div>
     </header>
 
     <main>
         <h1 class="main-title">Olá, seja bem vindo ao</h1>
         <h1 class="main-title_fixnow">FixNow</h1>
-        <section>
-
-            <article>
-                <h3>Solicitações</h3>
-                <div class="content">
-                    <p>Solicitações</p>
+        <section class="about-us-section">
+            <article class="about-us-article">
+                <h3>Sobre Nós - FixNow</h3>
+                <div class="content-about-us">
+                    <p>O <strong>FixNow</strong> é um sistema web desenvolvido como parte do Projeto Integrador do 1º termo do curso de Análise e Desenvolvimento de Sistemas. Ele nasceu da necessidade de otimizar a gestão de manutenção e reparos em ambientes industriais, combatendo as falhas causadas por processos informais como e-mails e mensagens.</p>
+                    <p>Nossa solução centraliza as solicitações de manutenção, garantindo rastreabilidade e acompanhamento ágil 24/7. Com o FixNow, eliminamos a comunicação ineficiente e proporcionamos métricas claras para identificar e resolver gargalos, aumentando a produtividade e a segurança dos dados.</p>
+                    <p>Principais funcionalidades incluem um formulário de solicitação de reparo detalhado (com tipo, localização, descrição e prioridade), rastreamento de solicitações com status em tempo real ("Em avaliação", "Em andamento", "Concluído") e uma página dedicada para o departamento de manutenção gerenciar e atribuir tarefas.</p>
+                    <p>Além disso, o FixNow prevê integração com tecnologias de automação, como sensores de monitoramento de máquinas industriais para coleta de dados de vibração e temperatura, permitindo a implementação de manutenção preditiva.</p>
+                    <p>Construído com HTML, CSS, JavaScript, MySQL e Python para análise de dados, e utilizando jQuery e JSON, o FixNow é uma ferramenta robusta e de baixo custo, projetada para transformar a gestão de manutenção em sua empresa.</p>
                 </div>
             </article>
-            <article>
-                <h3>Monitoramento</h3>
-                <div class="content">
-                    <div class="machine">
-                        <p>DMG Mori CMX 1100V</p>
-                        <div class="blocks">
-                            <div class="info-bloc">
-                                <p>00:00:00</p>
-                            </div>
-                            <div class="info-bloc">
-                                <div id="resultado">Carregando...</div>
-                            </div>
-                            <div class="status-active">
-                                <p>Ativa</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="machine">
-                        <p>Citizen L20</p>
-                        <div class="blocks">
-                            <div class="info-bloc">
-                                <p>00:00:00</p>
-                            </div>
-                            <div class="info-bloc">
-                                <div id="resultado">Carregando...</div>
-                            </div>
-                            <div class="status-active">
-                                <p>Ativa</p>
-                            </div>
-                        </div>  
-                </div>
-            </article>
-
         </section>
     </main>
-    <script src="js/script.js"></script>
+    <footer>
+        <p>&copy; 2025 FixNow. Todos os direitos reservados.</p>
+    </footer>
 </body>
 
 </html>

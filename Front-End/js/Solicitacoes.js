@@ -329,8 +329,8 @@ $(document).ready(function () {
     const descricao = $(this).data("descricao");
     const status = $(this).data("status");
     abrirPopupDetalhes(nome, tipo, departamento, urgencia, data, descricao, status);
-  }); // Fechamento correto do bloco .button-vermais
-}); // Fechamento correto do $(document).ready()
+  }); 
+}); 
 
 function verificarTipo() {
   const tipo = document.getElementById("tipoSolicitacao").value;

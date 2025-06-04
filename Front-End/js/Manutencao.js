@@ -11,6 +11,7 @@ $(document).ready(function () {
   const chkProfissional = document.getElementById('chkProfissional');
   const chkConcluido = document.getElementById('chkConcluido');
   const concluidoCheckboxContainer = $("#concluidoCheckboxContainer");
+  const buttonExport = document.getElementById("button-export");
 
   // Variáveis globais para armazenar detalhes da solicitação selecionada
   let idSolicitacaoSelecionada = null;
@@ -245,7 +246,7 @@ $(document).ready(function () {
           console.log("handleStatusChange: chkConcluido marcada E status NÃO era 'Concluido'. Chamando marcarComoConcluido(true)");
           marcarComoConcluido(true); 
           chkProfissional.disabled = true;
-          chkProfissional.checked = false; 
+          chkProfissional.checked = true; 
       }
       else if (!chkConcluido.checked && statusAtual === 'Concluido') {
           console.log("handleStatusChange: chkConcluido desmarcada E status era 'Concluido'. Chamando marcarComoConcluido(false)");
@@ -254,6 +255,57 @@ $(document).ready(function () {
           chkProfissional.checked = false;
       }
       console.log("--- handleStatusChange FINALIZADO ---");
+  };
+
+   window.marcarComoConcluido = function (shouldMark) {
+      if (!idSolicitacaoSelecionada) {
+          console.error("marcarComoConcluido: ID da solicitação não selecionado.");
+          Swal.fire({
+              title: "Erro!",
+              text: "ID da solicitação não selecionado para marcar status.",
+              icon: "error",
+              confirmButtonText: "OK"
+          });
+          return;
+      }
+
+      const novoStatus = shouldMark ? "Em avaliacao" : "Concluido" ;
+      const nomeResponsavel = shouldMark ? (detalhesProfissional.text() || localStorage.getItem("nomeUsuario")) : null;
+
+      console.log(`marcarComoConcluido: Enviando para Node-RED -> ID: ${idSolicitacaoSelecionada}, Status: '${novoStatus}', Responsável: '${nomeResponsavel}'`);
+
+      const solicitacaoData = {
+        status_solicitacao: novoStatus,
+        nome_responsavel: nomeResponsavel,
+        id_solicitacao: idSolicitacaoSelecionada
+      };
+
+      $.ajax({
+          url: "http://127.0.0.1:1880/marcarStatusSolicitacao",
+          method: "PUT",
+          contentType: "application/json",
+          data: JSON.stringify(solicitacaoData),
+          success: function () {
+              console.log(`marcarComoConcluido: Sucesso ao mudar status para ${novoStatus}`);
+              Swal.fire({
+                  title: "Sucesso!",
+                  text: `Solicitação marcada como ${novoStatus}!`,
+                  icon: "success",
+                  confirmButtonText: "OK"
+              });
+              fecharPopupDetalhes();
+              buscarSolicitacoes();
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+              console.error(`marcarComoConcluido: Erro ao mudar status para ${novoStatus}.`, jqXHR.responseText, textStatus, errorThrown);
+              Swal.fire({
+                  title: "Erro!",
+                  text: `Erro ao marcar como ${novoStatus}. Detalhes: ${jqXHR.responseText || errorThrown}`,
+                  icon: "error",
+                  confirmButtonText: "OK"
+              });
+          }
+      });
   };
 
 
@@ -308,56 +360,6 @@ $(document).ready(function () {
       });
   };
 
-  window.marcarComoConcluido = function (shouldMark) {
-      if (!idSolicitacaoSelecionada) {
-          console.error("marcarComoConcluido: ID da solicitação não selecionado.");
-          Swal.fire({
-              title: "Erro!",
-              text: "ID da solicitação não selecionado para marcar status.",
-              icon: "error",
-              confirmButtonText: "OK"
-          });
-          return;
-      }
-
-      const novoStatus = shouldMark ? "Concluido" : "Em avaliacao";
-      const nomeResponsavel = shouldMark ? (detalhesProfissional.text() || localStorage.getItem("nomeUsuario")) : null;
-
-      console.log(`marcarComoConcluido: Enviando para Node-RED -> ID: ${idSolicitacaoSelecionada}, Status: '${novoStatus}', Responsável: '${nomeResponsavel}'`);
-
-      const solicitacaoData = {
-          id_solicitacao: idSolicitacaoSelecionada,
-          status_solicitacao: novoStatus,
-          nome_responsavel: nomeResponsavel
-      };
-
-      $.ajax({
-          url: "http://127.0.0.1:1880/marcarStatusSolicitacao",
-          method: "PUT",
-          contentType: "application/json",
-          data: JSON.stringify(solicitacaoData),
-          success: function () {
-              console.log(`marcarComoConcluido: Sucesso ao mudar status para ${novoStatus}`);
-              Swal.fire({
-                  title: "Sucesso!",
-                  text: `Solicitação marcada como ${novoStatus}!`,
-                  icon: "success",
-                  confirmButtonText: "OK"
-              });
-              fecharPopupDetalhes();
-              buscarSolicitacoes();
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-              console.error(`marcarComoConcluido: Erro ao mudar status para ${novoStatus}.`, jqXHR.responseText, textStatus, errorThrown);
-              Swal.fire({
-                  title: "Erro!",
-                  text: `Erro ao marcar como ${novoStatus}. Detalhes: ${jqXHR.responseText || errorThrown}`,
-                  icon: "error",
-                  confirmButtonText: "OK"
-              });
-          }
-      });
-  };
 
 
   listaSolicitacoes.on("click", ".button-vermais", function () {
@@ -452,43 +454,44 @@ $(document).ready(function () {
       window.location.href = '../index.html';
   }
 
-  let criaCSV = () => {
-      $.ajax({
-          url: "http://127.0.0.1:1880/buscarsolicitacao",
-          method: "GET",
-          dataType: "json",
-          success: function (data) {
-              console.log("Dados das solicitações recebidos para CSV:", data);
-              if (data.length === 0) {
-                  alert("Não há dados para exportar.");
-                  return;
-              }
-              let csvContent = "data:text/csv;charset=utf-8,";
-              const header = Object.keys(data[0]).join(",");
-              csvContent += header + "\r\n";
+  buttonExport.addEventListener("click", () => {
+            $.ajax({
+                url: "http://127.0.0.1:1880/buscarsolicitacao",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log("Dados das solicitações recebidos para CSV:", data);
+                    if (data.length === 0) {
+                        alert("Não há dados para exportar.");
+                        return;
+                    }
+                    let csvContent = "data:text/csv;charset=utf-8,";
+                    const header = Object.keys(data[0]).join(",");
+                    csvContent += header + "\r\n";
 
-              data.forEach(function (item) {
-                  const row = Object.values(item).map(value => {
-                      if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
-                          return `"${value.replace(/"/g, '""')}"`; 
-                      }
-                      return value;
-                  }).join(",");
-                  csvContent += row + "\r\n";
-              });
+                    data.forEach(function (item) {
+                        const row = Object.values(item).map(value => {
+                            if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
+                                return `"${value.replace(/"/g, '""')}"`;
+                            }
+                            return value;
+                        }).join(",");
+                        csvContent += row + "\r\n";
+                    });
 
-              const encodedUri = encodeURI(csvContent);
-              const link = document.createElement("a");
-              link.setAttribute("href", encodedUri);
-              link.setAttribute("download", "solicitacoes.csv");
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-              console.error("Erro ao buscar as solicitações para CSV:", textStatus, errorThrown, jqXHR);
-              alert("Erro ao gerar CSV. Verifique o console para mais detalhes.");
-          }
-      });
-  };
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", "solicitacoes.csv");
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Erro ao buscar as solicitações para CSV:", textStatus, errorThrown, jqXHR);
+                    alert("Erro ao gerar CSV. Verifique o console para mais detalhes.");
+                }
+            });
+ });
 });
+     

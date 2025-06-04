@@ -221,7 +221,7 @@ main {
     margin: 15px auto 0;
 }
 
-.button-export {
+#button-export {
     align-items: center;
     justify-content: center;
     background-color: #14244C;

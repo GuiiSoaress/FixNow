@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles/style-solicitacoes.css" />
+  <link rel="stylesheet" href="styles/global.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
   <script src="js/Solicitacoes.js" defer></script>
@@ -18,25 +19,26 @@
 
 <body>
   <header>
-    <div class="header-logo">
-      <a href="home.html"><img src="images/logo-transparente.png" alt="" /></a>
-    </div>
-    <nav>
-      <ul class="menu-list">
-        <li class="menu-item"><a href="#">Solicitações</a></li>
-        <li class="menu-item">
-          <a href="monitoramento.html">Monitoramento</a>
-          <a id="manutencao-button" href="manutencao.html">Manutencao</a>
-          <button onclick="logout()">logout</button>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="user">
-      <img src="images/user-solid.svg" alt="" />
-      <div class="nomeUsuario" id="nomeUsuariologin">Usuario</div>
-    </div>
-  </header>
+        <div class="header-logo">
+            <a href="home.html"><img src="images/logo-transparente.png" alt="" /></a>
+        </div>
+        <nav>
+            <ul class="menu-list">
+                <li class="menu-item"><a href="solicitacoes.html">Solicitações</a></li>
+                <li class="menu-item">
+                    <a href="monitoramento.html">Monitoramento</a>
+                    <a id="manutencao-button" href="manutencao.html">Manutenção</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="user" id="userProfile">
+            <img src="images/user-solid.svg" alt="">
+            <div class="nomeUsuario" id="nomeUsuariologin">Admin</div>
+            <div class="logout-popup" id="logoutPopup">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
 
   <h1 class="main-title">Minhas Solicitações</h1>
 
@@ -52,7 +54,7 @@
     </button>
 
     <button class="button-filtro" id="button-filtro-concluido" onclick="buscarSolicitacoesConcluido()">
-      <p>Concluido</p>
+      <p>Concluído</p>
     </button>
 
     <button class="criar-solicitacao">
@@ -103,7 +105,7 @@
         <br>
         <br>
 
-        <label for="urgenciaSolicitacao">Urgencia: </label>
+        <label for="urgenciaSolicitacao">Urgência: </label>
         <select id="urgenciaSolicitacao" required>
           <option value="" disabled selected>Selecione uma opção</option>
           <option value="Baixa">Baixa</option>
@@ -139,9 +141,6 @@
         <label for="dataSolicitacao">Data:</label>
         <input type="date" id="dataSolicitacao" required /><br />
 
-        <!-- <label for="responsavelSolicitacao">Responsável:</label>
-          <input type="text" id="responsavelSolicitacao" required /><br /> -->
-
         <label for="descricaoSolicitacao">Descrição:</label>
         <textarea id="descricaoSolicitacao" rows="4" cols="30" required></textarea><br>
 
@@ -169,7 +168,9 @@
       </form>
     </div>
   </div>
-
+   <footer>
+        <p>&copy; 2025 FixNow. Todos os direitos reservados.</p>
+    </footer>
 </body>
 
 </html>
